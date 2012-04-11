@@ -4,4 +4,7 @@ project/target
 target
 tmp
 .history
+.settings
+.idea
+.idea_modules
 dist
