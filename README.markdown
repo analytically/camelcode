@@ -1,5 +1,9 @@
-CamelCode - Geocode UK postcode addresses
-=========================================
+CamelCode
+=========
+
+A tech demo built on top of [Play Framework 2.0](http://www.playframework.org/) that imports the
+[CodePoint Open](https://www.ordnancesurvey.co.uk/opendatadownload/products.html) UK postcode dataset
+and offers a Geocoding RESTful API.
 
 Prerequisites: [MongoDB](http://www.mongodb.org/) and [Play Framework 2.0](http://www.playframework.org/).
 
@@ -12,8 +16,8 @@ Edit `conf/application.conf` and point it to a MongoDB installation, and execute
 play run
 ```
 
-Then put the [CodePoint Open CSV](https://www.ordnancesurvey.co.uk/opendatadownload/products.html) (scroll down, halfway down, 20mb)
-files in the codepointopen directory.
+Then put the [CodePoint Open CSVs](https://www.ordnancesurvey.co.uk/opendatadownload/products.html) (scroll down, halfway down, 20mb)
+in the codepointopen directory.
 
 After they are processed, they will be moved to the `codepointopen/done` directory.
 
@@ -23,7 +27,11 @@ Visit [http://localhost:9000/servermetrics](http://localhost:9000/servermetrics)
 JSON
 ----
 
-Access [http://localhost:9000/latlng/POSTCODE](http://localhost:9000/latlng/BS106TF) to geocode a postcode. Response will be JSON.
+GET [http://localhost:9000/latlng/POSTCODE](http://localhost:9000/latlng/BS106TF) to geocode a UK postcode. Response will be JSON:
+
+```
+{"latitude":51.505615,"longitude":-2.6120315}
+```
 
 Technology
 ----------
