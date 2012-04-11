@@ -23,21 +23,27 @@ Visit [http://localhost:9000/servermetrics](http://localhost:9000/servermetrics)
 JSON
 ----
 
-Access http://localhost:9000/latlng/POSTCODE to geocode a postcode. Response will be JSON.
+Access [http://localhost:9000/latlng/POSTCODE](http://localhost:9000/latlng/BS106TF) to geocode a postcode. Response will be JSON.
 
 Technology
 ----------
 
-* Play Framework 2.0, thank god for this!
-* Apache Camel to read and monitor the directory and to tell the actors about the postcodes (body split)
-* Akka provides a nice concurrent model to process the 1.7 million postcodes in under one minute on modern hardware
-* GeoTools converts the eastings/northings to latitude/longitude
-* Guice for Dependency Injection (not too much to inject yet though)
+* [Play Framework 2.0](http://www.playframework.org/), thank god for this!
+* [Apache Camel](http://camel.apache.org/) to [process and monitor](https://github.com/analytically/camelcode/blob/master/app/Global.java#L103) the `codepointopen` directory and to tell the actors about the postcodes (split(body()))
+* [Akka 2.0](http://akka.io/) provides a nice concurrent model [to process the 1.7 million postcodes](https://github.com/analytically/camelcode/blob/master/app/actors/ProcessCodePointOpenCsv.java) in under one minute on modern hardware
+* [GeoTools 8](http://www.geotools.org/) [converts](https://github.com/analytically/camelcode/blob/master/app/actors/ProcessCodePointOpenCsv.java#L68) the eastings/northings to latitude/longitude
+* [Guice](http://code.google.com/p/google-guice/) for [Dependency Injection](https://github.com/analytically/camelcode/blob/master/app/Global.java#L53) (not too much to inject yet though)
 * [Metrics](https://github.com/codahale/metrics) for metrics
 * MongoDB and Morphia as storage and ORM
 * Twitter Bootstrap and Font Awesome for the UI
 
 This was developed in a single day, as a proof of concept. Do whatever you like with it. Free for commercial use.
+
+Todo
+----------
+
+* Fix distance calculation, Morphia does't do geoNear yet (grmbl)
+* Add add a map using [Leaflet](http://leaflet.cloudmade.com/) displaying all UK postcodes (need to think how to dynamically add layers depending on zoom level)
 
 Screenshots
 -----------
