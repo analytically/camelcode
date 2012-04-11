@@ -18,7 +18,6 @@ public class PostcodeUnit extends Model {
     public String pqi; // quality indicator, 10 = best, 90 = least
 
     @Embedded
-    @Indexed(IndexDirection.GEO2D)
     public CartesianLocation cartesianLocation;
 
     @Embedded

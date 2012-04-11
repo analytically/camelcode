@@ -100,7 +100,7 @@ public class Global extends GlobalSettings {
                 @Override
                 public void configure() throws Exception {
 
-                    from("file://codepointopen/")
+                    from("file://codepointopen/?move=done")
                             .unmarshal().bindy(BindyType.Csv, "models.csv")
                             .split(body())
                             .process(new Processor() {
