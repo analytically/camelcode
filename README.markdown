@@ -1,7 +1,7 @@
 CamelCode - Geocode UK postcode addresses
 =========================================
 
-Prerequisites: MongoDB and Play Framework 2.0.
+Prerequisites: [MongoDB](http://www.mongodb.org/) and [Play Framework 2.0](http://www.playframework.org/).
 
 Setup
 -----
@@ -9,7 +9,7 @@ Setup
 Edit `conf/application.conf` and point it to a MongoDB installation, and execute
 
 ```
-play run.
+play run
 ```
 
 Then put the [CodePoint Open CSV](https://www.ordnancesurvey.co.uk/opendatadownload/products.html) (scroll down, halfway down, 20mb)
@@ -17,7 +17,8 @@ files in the codepointopen directory.
 
 After they are processed, they will be moved to the `codepointopen/done` directory.
 
-Then go to http://localhost:9000/ and you should see the welcome screen.
+Then visit [http://localhost:9000/](http://localhost:9000/) and you should see the welcome screen.
+Visit [http://localhost:9000/servermetrics](http://localhost:9000/servermetrics) for server metrics.
 
 JSON
 ----
@@ -32,6 +33,7 @@ Technology
 * Akka provides a nice concurrent model to process the 1.7 million postcodes in under one minute on modern hardware
 * GeoTools converts the eastings/northings to latitude/longitude
 * Guice for Dependency Injection (not too much to inject yet though)
+* [Metrics](https://github.com/codahale/metrics) for metrics
 * MongoDB and Morphia as storage and ORM
 * Twitter Bootstrap and Font Awesome for the UI
 
