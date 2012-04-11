@@ -60,7 +60,9 @@ public class Application extends Controller {
     }
 
     public static Result latLng(String postcode) {
-        PostcodeUnit unit = PostcodeUnit.find.field("postcode").equal(CharMatcher.WHITESPACE.removeFrom(postcode)).get();
+        if (postcode == null) return notFound();
+
+        PostcodeUnit unit = PostcodeUnit.find.field("postcode").equal(CharMatcher.WHITESPACE.removeFrom(postcode.toUpperCase())).get();
         if (unit == null) {
             return notFound();
         } else {
@@ -81,7 +83,9 @@ public class Application extends Controller {
     }
 
     public static Result eastingsNorthings(String postcode) {
-        PostcodeUnit unit = PostcodeUnit.find.field("postcode").equal(CharMatcher.WHITESPACE.removeFrom(postcode)).get();
+        if (postcode == null) return notFound();
+
+        PostcodeUnit unit = PostcodeUnit.find.field("postcode").equal(CharMatcher.WHITESPACE.removeFrom(postcode.toUpperCase())).get();
         if (unit == null) {
             return notFound();
         } else {
