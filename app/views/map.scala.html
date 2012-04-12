@@ -1,0 +1,105 @@
+@main("Postcode Map") {
+
+<div id="map"></div>
+
+<script type="text/javascript">
+
+    var subDomains = ['otile1', 'otile2', 'otile3', 'otile4'],
+            aerialSubDomains = ['oatile1', 'oatile2', 'oatile3', 'oatile4'],
+            options = {maxZoom:18, subdomains:subDomains},
+            aerialOptions = {maxZoom:11, subdomains:aerialSubDomains},
+            url = 'http://{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png',
+            aerialUrl = 'http://{s}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.png';
+
+    var normal = new L.TileLayer(url, options);
+    var aerial = new L.TileLayer(aerialUrl, aerialOptions);
+
+    var highlightLayer = new L.LayerGroup();
+
+    $('#map').css('height', $(window).height());
+
+    var map = new L.Map('map', {
+        attributionControl:false,
+        center:new L.LatLng(52.5, -2),
+        zoom:7,
+        layers:[normal]
+    });
+
+    var baseMaps = {
+        "Map":normal,
+        "Sattelite":aerial
+    };
+
+    var overlayMaps = {
+    };
+
+    var postcodeIcon = L.Icon.extend({
+        options:{
+            iconUrl:L.ROOT_URL + '../images/maki/marker-solid-18.png',
+            shadowUrl:null,
+            iconSize:new L.Point(24, 24),
+            shadowSize:null,
+            iconAnchor:new L.Point(12, 24),
+            popupAnchor:new L.Point(0, -24)
+        }
+    });
+
+    map.doubleClickZoom.disable();
+    map.on('click', onClick);
+    function onClick(e) {
+        // fetch all postcodes surrounding the click and display them on a layer
+        var postcodesLayer = new L.LayerGroup();
+
+        $.getJSON('/near/' + e.latlng.lat + '/' + e.latlng.lng, function (data) {
+            $.each(data, function (i, pcu) {
+
+                // for every party, create a marker in it's location and add it to the map
+                var latLng = new L.LatLng(pcu.location.latitude, pcu.location.longitude);
+                var marker = new L.Marker(latLng, {icon:new postcodeIcon});
+                marker.bindPopup(pcu.postcode);
+
+                postcodesLayer.addLayer(marker);
+            });
+        });
+
+        map.addLayer(postcodesLayer);
+    }
+
+    map.on('dblclick', onDblClick);
+    function onDblClick(e) {
+        if (e.originalEvent.ctrlKey || e.originalEvent.metaKey) {
+            var oneMileCircle = new L.Circle(e.latlng, 1609, {stroke:false, color:'#46a546', opacity:0.1});
+            var fiveMileCircle = new L.Circle(e.latlng, 8046, {stroke:false, color:'#46a546', opacity:0.1});
+            var tenMileCircle = new L.Circle(e.latlng, 16093, {stroke:false, color:'#46a546', opacity:0.1});
+            var fifteenMileCircle = new L.Circle(e.latlng, 24140, {stroke:false, color:'#90EE90', opacity:0.1});
+
+            var removeCircles = function () {
+                map.removeLayer(oneMileCircle);
+                map.removeLayer(fiveMileCircle);
+                map.removeLayer(tenMileCircle);
+                map.removeLayer(fifteenMileCircle);
+            };
+
+            oneMileCircle.on('click', removeCircles);
+            fiveMileCircle.on('click', removeCircles);
+            tenMileCircle.on('click', removeCircles);
+            fifteenMileCircle.on('click', removeCircles);
+
+            map.addLayer(oneMileCircle);
+            map.addLayer(fiveMileCircle);
+            map.addLayer(tenMileCircle);
+            map.addLayer(fifteenMileCircle);
+        }
+        else {
+            map.setView(e.latlng, map.getZoom() + 1);
+        }
+    }
+
+    var layersControl = new L.Control.Layers(baseMaps, overlayMaps);
+    map.addControl(layersControl);
+
+    map.addControl(new L.Control.Scale({maxWidth:700, metric:false}));
+    map.addControl(new L.Control.Scale({maxWidth:300, metric:false}));
+    map.addControl(new L.Control.Scale({maxWidth:100, metric:false}));
+</script>
+}

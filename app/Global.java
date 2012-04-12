@@ -1,4 +1,4 @@
-import actors.ProcessCodePointOpenCsv;
+import actors.ProcessCPOCsvEntry;
 import akka.actor.ActorRef;
 import akka.actor.Props;
 import akka.actor.UntypedActorFactory;
@@ -7,17 +7,13 @@ import com.google.code.morphia.logging.slf4j.SLF4JLogrImplFactory;
 import com.google.common.base.Throwables;
 import com.google.common.collect.Lists;
 import com.google.inject.*;
-import com.yammer.metrics.Metrics;
-import com.yammer.metrics.core.Counter;
 import com.yammer.metrics.reporting.ConsoleReporter;
-import models.PostcodeUnit;
 import models.csv.CodePointOpenCsvEntry;
 import org.apache.camel.CamelContext;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.dataformat.BindyType;
-import org.joda.time.LocalDateTime;
 import org.reflections.Reflections;
 import org.reflections.scanners.SubTypesScanner;
 import org.reflections.scanners.TypeAnnotationsScanner;
@@ -89,8 +85,8 @@ public class Global extends GlobalSettings {
         ConsoleReporter.enable(1, TimeUnit.MINUTES);
 
         final ActorRef processActorRef = Akka.system().actorOf(new Props(new UntypedActorFactory() {
-            public ProcessCodePointOpenCsv create() {
-                return injector.getInstance(ProcessCodePointOpenCsv.class);
+            public ProcessCPOCsvEntry create() {
+                return injector.getInstance(ProcessCPOCsvEntry.class);
             }
         }), "process-codepoint-open-csv-entry");
 

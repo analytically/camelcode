@@ -8,6 +8,7 @@ import play.data.validation.Constraints;
 import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.index;
+import views.html.map;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +47,10 @@ public class Application extends Controller {
 
     public static Result index() {
         return ok(index.render(form(DistanceCalc.class), form(Geocode.class), new ArrayList<PostcodeUnit>()));
+    }
+    
+    public static Result map() {
+        return ok(map.render());
     }
 
     public static Result ll() {
@@ -96,6 +101,11 @@ public class Application extends Controller {
         } else {
             return ok(toJson(unit.cartesianLocation));
         }
+    }
+    
+    public static Result near(String latitude, String longitude) {
+        List<PostcodeUnit> units = PostcodeUnit.find.field("location").near(Double.parseDouble(latitude), Double.parseDouble(longitude)).asList();
+        return ok(toJson(units));
     }
 
     public static Result calc() {

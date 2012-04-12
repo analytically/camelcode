@@ -3,7 +3,7 @@ CamelCode
 
 A tech demo built on top of [Play Framework 2.0](http://www.playframework.org/) that imports the
 [CodePoint Open](https://www.ordnancesurvey.co.uk/opendatadownload/products.html) UK postcode dataset
-and offers a Geocoding RESTful API.
+and offers a Geocoding RESTful API and a map.
 
 Prerequisites: [MongoDB](http://www.mongodb.org/) and [Play Framework 2.0](http://www.playframework.org/).
 
@@ -43,9 +43,19 @@ Technology
 * [Guice](http://code.google.com/p/google-guice/) for [Dependency Injection](https://github.com/analytically/camelcode/blob/master/app/Global.java#L53) (not too much to inject yet though)
 * [Metrics](https://github.com/codahale/metrics) for metrics
 * [MongoDB](http://www.mongodb.org/) and [Morphia](http://code.google.com/p/morphia/) as storage and ORM
+* [Leaflet](http://leaflet.cloudmade.com/) for the map
 * [Twitter Bootstrap](http://twitter.github.com/bootstrap/) and [Font Awesome](http://fortawesome.github.com/Font-Awesome/) for the UI
 
-Developed as proof of concept in the afternoon of 11 April 2012 by Mathias Bogaert. Do whatever you like with it. Free for commercial use.
+License
+-------
+
+Licensed under the [WTFPL](http://en.wikipedia.org/wiki/WTFPL).
+
+This data contains Ordnance Survey data &copy; Crown copyright and database right 2011. Code-Point Open contains
+Royal Mail data &copy; Royal Mail copyright and database right 2011. Code-Point Open and ONSPD contains National Statistics
+data &copy; Crown copyright and database right 2011.
+
+OS data may be used under the terms of the [OS OpenData licence](http://www.ordnancesurvey.co.uk/oswebsite/docs/licences/os-opendata-licence.pdf).
 
 Todo
 ----------
@@ -57,3 +67,4 @@ Screenshots
 -----------
 
 ![Welcome Page](https://github.com/analytically/camelcode/raw/master/screenshot.png)
+![Map](https://github.com/analytically/camelcode/raw/master/screenshot2.png)

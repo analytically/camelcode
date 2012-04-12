@@ -3,135 +3,140 @@
 @implicitField = @{helper.FieldConstructor(twitterBootstrap20FieldConstructor.f)}
 
 @main("Welcome to CamelCode") {
-<div class="hero-unit">
-    <h1><i class="icon-road"></i> CamelCode</h1>
-    <p>
-        A tech demo built on top of <a href="http://www.playframework.org/">Play Framework 2.0</a> that
-        imports the <a href="https://www.ordnancesurvey.co.uk/opendatadownload/products.html">CodePoint Open</a> UK postcode dataset
-        and offers a Geocoding RESTful API. Check the <a href="@routes.Server.metrics()"><i class="icon-cogs"></i> server metrics</a>.
-    </p>
-</div>
+<div class="container">
+    <div class="hero-unit">
+        <h1><i class="icon-road"></i> CamelCode</h1>
+        <p>
+            A tech demo built on top of <a href="http://www.playframework.org/">Play Framework 2.0</a> that
+            imports the <a href="https://www.ordnancesurvey.co.uk/opendatadownload/products.html">CodePoint Open</a> UK postcode dataset
+            and offers a Geocoding RESTful API. Check the <a href="@routes.Server.metrics()"><i class="icon-cogs"></i> server metrics</a>.
+        </p>
+    </div>
 
-<div class="marketing">
-    <div class="row">
-        <div class="span4">
-            <h2><i class="icon-gift icon-large"></i> Get latitude and longitude</h2>
-            <p>
-                Geocoding UK postcodes has never been so easy! The 1.7 million
-                <a href="https://www.ordnancesurvey.co.uk/opendatadownload/products.html">CodePoint Open</a> postcodes
-                are imported in under one minute, and average response time is below 10ms on modern hardware. Try these:
-                <a href="@routes.Application.latLng("BS106TF")">BS10 6TF</a>,
-                <a href="@routes.Application.latLng("SW1A 2AA")">SW1A 2AA</a>.
-            </p>
+    <div class="marketing">
+        <div class="row">
+            <div class="span4">
+                <h2><i class="icon-gift icon-large"></i> Get latitude and longitude</h2>
+                <p>
+                    Geocoding UK postcodes has never been so easy! The 1.7 million
+                    <a href="https://www.ordnancesurvey.co.uk/opendatadownload/products.html">CodePoint Open</a> postcodes
+                    are imported in under one minute, and average response time is below 10ms on modern hardware. Try these:
+                    <a href="@routes.Application.latLng("BS106TF")">BS10 6TF</a>,
+                    <a href="@routes.Application.latLng("SW1A 2AA")">SW1A 2AA</a>.
+                </p>
+            </div>
+            <div class="span4">
+                <h2><i class="icon-road icon-large"></i> Calculate distance, map it</h2>
+                <p>
+                    Calculate distances between UK postcodes. Todo. Visit the <a href="@routes.Application.map()">postcode map</a>.
+                    Click anywhere to display postcodes. CTRL-Double click for distances.
+                </p>
+            </div>
+            <div class="span4">
+                <h2><i class="icon-ok icon-large"></i> Cross-everything</h2>
+                <p>Geocoding responses in JSON. Or use the provided UI. Or integrate it in your own Play! application.</p>
+            </div>
         </div>
-        <div class="span4">
-            <h2><i class="icon-road icon-large"></i> Calculate distance</h2>
-            <p>Calculate distances between UK postcodes. Todo.</p>
-        </div>
-        <div class="span4">
-            <h2><i class="icon-ok icon-large"></i> Cross-everything</h2>
-            <p>Geocoding responses in JSON. Or use the provided UI. Or integrate it in your own Play! application.</p>
+        <div class="row">
+            <div class="span4">
+                <h2><i class="icon-thumbs-up icon-large"></i> Built on great software</h2>
+                <p>
+                    Built on
+                    <a href="http://www.playframework.org/" target="_blank">Play Framework 2.0 <i class="icon-external-link"></i></a>,
+                    <a href="http://camel.apache.org/" target="_blank">Apache Camel <i class="icon-external-link"></i></a>,
+                    <a href="http://www.geotools.org/" target="_blank">GeoTools <i class="icon-external-link"></i></a>,
+                    <a href="http://www.mongodb.org/" target="_blank">MongoDB <i class="icon-external-link"></i></a>,
+                    <a href="http://code.google.com/p/morphia/" target="_blank">Morphia <i class="icon-external-link"></i></a>,
+                    <a href="http://code.google.com/p/google-guice/" target="_blank">Google Guice 3.0 <i class="icon-external-link"></i></a>,
+                    <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap 2.0 <i class="icon-external-link"></i></a> and
+                    <a href="http://fortawesome.github.com/Font-Awesome/" target="_blank">Font Awesome <i class="icon-external-link"></i></a>.
+                </p>
+            </div>
+            <div class="span4">
+                <h2><i class="icon-heart-empty icon-large"></i> Free for commercial use</h2>
+                <p>The CamelCode project is completely free for commercial use. Feel guilty? Buy me a (belgian) beer.</p>
+            </div>
+            <div class="span4">
+                <h2><i class="icon-twitter-sign icon-large"></i> Follow on Twitter</h2>
+                <p>
+                    Follow <a href="http://twitter.com/#!/analytically" target="_blank">@@analytically <i class="icon-external-link"></i></a>
+                    for updates and programming tips and tricks.
+                </p>
+            </div>
         </div>
     </div>
-    <div class="row">
-        <div class="span4">
-            <h2><i class="icon-thumbs-up icon-large"></i> Built on great software</h2>
-            <p>
-                Built on 
-                <a href="http://www.playframework.org/" target="_blank">Play Framework 2.0 <i class="icon-external-link"></i></a>,
-                <a href="http://camel.apache.org/" target="_blank">Apache Camel <i class="icon-external-link"></i></a>,
-                <a href="http://www.geotools.org/" target="_blank">GeoTools <i class="icon-external-link"></i></a>,
-                <a href="http://www.mongodb.org/" target="_blank">MongoDB <i class="icon-external-link"></i></a>,
-                <a href="http://code.google.com/p/morphia/" target="_blank">Morphia <i class="icon-external-link"></i></a>,
-                <a href="http://code.google.com/p/google-guice/" target="_blank">Google Guice 3.0 <i class="icon-external-link"></i></a>,
-                <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap 2.0 <i class="icon-external-link"></i></a> and
-                <a href="http://fortawesome.github.com/Font-Awesome/" target="_blank">Font Awesome <i class="icon-external-link"></i></a>.
-            </p>
-        </div>
-        <div class="span4">
-            <h2><i class="icon-road icon-large"></i> Free for commercial use</h2>
-            <p>The CamelCode project is completely free for commercial use. If you feel guilty, buy me a (belgian) beer.</p>
-        </div>
-        <div class="span4">
-            <h2><i class="icon-twitter-sign icon-large"></i> Follow on Twitter</h2>
-            <p>
-                Follow <a href="http://twitter.com/#!/analytically" target="_blank">@@analytically <i class="icon-external-link"></i></a>
-                for updates and programming tips and tricks.
-            </p>
-        </div>
+
+    <hr/>
+
+    @if(flash.containsKey("success")) {
+    <div class="alert alert-success">
+        <strong>Done!</strong> @flash.get("success")
     </div>
-</div>
+    }
 
-<hr/>
+    @if(postcodeUnits.size > 0) {
+    <div class="well">
+        <ul>
+            @for(unit <- postcodeUnits) {
+                <li>@unit.postcode - @unit.location.latitude, @unit.location.longitude</li>
+            }
+        </ul>
+    </div>
+    }
 
-@if(flash.containsKey("success")) {
-<div class="alert alert-success">
-    <strong>Done!</strong> @flash.get("success")
-</div>
-}
-
-@if(postcodeUnits.size > 0) {
-<div class="well">
-    <ul>
-        @for(unit <- postcodeUnits) {
-            <li>@unit.postcode - @unit.location.latitude, @unit.location.longitude</li>
-        }
+    <ul id="tab" class="nav nav-tabs">
+        <li class="active"><a href="#distance" data-toggle="tab">Distance</a></li>
+        <li><a href="#ll" data-toggle="tab">Latitude/Longitude</a></li>
+        <li><a href="#en" data-toggle="tab">Eastings/Northings</a></li>
     </ul>
-</div>
-}
 
-<ul id="tab" class="nav nav-tabs">
-    <li class="active"><a href="#distance" data-toggle="tab">Distance</a></li>
-    <li><a href="#ll" data-toggle="tab">Latitude/Longitude</a></li>
-    <li><a href="#en" data-toggle="tab">Eastings/Northings</a></li>
-</ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="distance">
+            @helper.form(routes.Application.calc()) {
+            <fieldset>
+                @helper.input(distanceCalc("postcode"), '_label -> "Postcode:") { (id, name, value, args) =>
+                <input type="text" class="input-small" id="@id" name="@name" value="@value" @toHtmlArgs(args)>
+                }
 
-<div class="tab-content">
-    <div class="tab-pane active" id="distance">
-        @helper.form(routes.Application.calc()) {
-        <fieldset>
-            @helper.input(distanceCalc("postcode"), '_label -> "Postcode:") { (id, name, value, args) =>
-            <input type="text" class="input-small" id="@id" name="@name" value="@value" @toHtmlArgs(args)>
+                @helper.input(distanceCalc("distance"), '_label -> "Distance:") { (id, name, value, args) =>
+                <input type="text" class="input-small" id="@id" name="@name" value="@value" @toHtmlArgs(args)>
+                }
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Calculate</button>
+                    <a href="@routes.Application.index()" class="btn">Cancel</a>
+                </div>
+            </fieldset>
             }
+        </div>
+        <div class="tab-pane" id="ll">
+            @helper.form(routes.Application.ll) {
+            <fieldset>
+                @helper.input(geocode("postcode"), '_label -> "Postcode:") { (id, name, value, args) =>
+                <input type="text" class="input-small" id="@id" name="@name" value="@value" @toHtmlArgs(args)>
+                }
 
-            @helper.input(distanceCalc("distance"), '_label -> "Distance:") { (id, name, value, args) =>
-            <input type="text" class="input-small" id="@id" name="@name" value="@value" @toHtmlArgs(args)>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Geocode lat-long</button>
+                    <a href="@routes.Application.index()" class="btn">Cancel</a>
+                </div>
+            </fieldset>
             }
+        </div>
+        <div class="tab-pane" id="en">
+            @helper.form(routes.Application.en) {
+            <fieldset>
+                @helper.input(geocode("postcode"), '_label -> "Postcode:") { (id, name, value, args) =>
+                <input type="text" class="input-small" id="@id" name="@name" value="@value" @toHtmlArgs(args)>
+                }
 
-            <div class="form-actions">
-                <button type="submit" class="btn btn-primary">Calculate</button>
-                <a href="@routes.Application.index()" class="btn">Cancel</a>
-            </div>
-        </fieldset>
-        }
-    </div>
-    <div class="tab-pane" id="ll">
-        @helper.form(routes.Application.ll) {
-        <fieldset>
-            @helper.input(geocode("postcode"), '_label -> "Postcode:") { (id, name, value, args) =>
-            <input type="text" class="input-small" id="@id" name="@name" value="@value" @toHtmlArgs(args)>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Geocode eastings-northings</button>
+                    <a href="@routes.Application.index()" class="btn">Cancel</a>
+                </div>
+            </fieldset>
             }
-
-            <div class="form-actions">
-                <button type="submit" class="btn btn-primary">Geocode lat-long</button>
-                <a href="@routes.Application.index()" class="btn">Cancel</a>
-            </div>
-        </fieldset>
-        }
-    </div>
-    <div class="tab-pane" id="en">
-        @helper.form(routes.Application.en) {
-        <fieldset>
-            @helper.input(geocode("postcode"), '_label -> "Postcode:") { (id, name, value, args) =>
-            <input type="text" class="input-small" id="@id" name="@name" value="@value" @toHtmlArgs(args)>
-            }
-
-            <div class="form-actions">
-                <button type="submit" class="btn btn-primary">Geocode eastings-northings</button>
-                <a href="@routes.Application.index()" class="btn">Cancel</a>
-            </div>
-        </fieldset>
-        }
+        </div>
     </div>
 </div>
 }

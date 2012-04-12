@@ -4,6 +4,7 @@
 
 # Home page
 GET     /                                   controllers.Application.index()
+GET     /map                                controllers.Application.map()
 
 POST    /latlng                             controllers.Application.ll
 GET     /latlng/:postcode                   controllers.Application.latLng(postcode: String)
@@ -11,6 +12,7 @@ GET     /latlng/:postcode                   controllers.Application.latLng(postc
 GET     /en                                 controllers.Application.en
 GET     /eastingnorthings/:postcode         controllers.Application.eastingsNorthings(postcode: String)
 
+GET     /near/:lat/:lng                    controllers.Application.near(lat: String, lng: String)
 POST    /calc                               controllers.Application.calc()
 
 # Utilities for debugging server issues
