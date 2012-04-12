@@ -30,7 +30,6 @@ public class MorphiaModule extends AbstractModule {
     @Provides
     Datastore create(final Application application, final Injector injector) {
         Morphia morphia = new Morphia();
-
         morphia.getMapper().getOptions().objectFactory = new DefaultCreator() {
             @Override
             protected ClassLoader getClassLoaderForClass(String clazz, DBObject object) {

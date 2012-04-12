@@ -63,10 +63,6 @@ public abstract class Model {
         return datastore.delete(this);
     }
 
-    public WriteResult delete(WriteConcern wc) {
-        return datastore.delete(this, wc);
-    }
-
     /**
      * @author Mathias Bogaert
      */
@@ -83,15 +79,6 @@ public abstract class Model {
 
         public T byId(ObjectId objectId) {
             return datastore.get(type, objectId);
-        }
-
-        public List<T> byIdStrings(Iterable<String> ids) {
-            return byIds(Iterables.transform(ids, new Function<String, ObjectId>() {
-                @Override
-                public ObjectId apply(@Nullable String input) {
-                    return ObjectId.massageToObjectId(input);
-                }
-            }));
         }
 
         public List<T> byIds(Iterable<ObjectId> ids) {

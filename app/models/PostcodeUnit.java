@@ -1,11 +1,10 @@
 package models;
 
+import com.google.code.morphia.annotations.Embedded;
 import com.google.code.morphia.annotations.Entity;
 import com.google.code.morphia.annotations.Indexed;
 import com.google.code.morphia.utils.IndexDirection;
 import com.google.common.base.Objects;
-
-import javax.persistence.Embedded;
 
 /**
  * @author Mathias Bogaert
@@ -17,10 +16,10 @@ public class PostcodeUnit extends Model {
 
     public String pqi; // quality indicator, 10 = best, 90 = least
 
-    @Embedded
+    @Embedded("c_loc")
     public CartesianLocation cartesianLocation;
 
-    @Embedded
+    @Embedded("loc")
     @Indexed(IndexDirection.GEO2D)
     public Location location;
 

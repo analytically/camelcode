@@ -5,6 +5,13 @@ import org.apache.camel.dataformat.bindy.annotation.CsvRecord;
 import org.apache.camel.dataformat.bindy.annotation.DataField;
 
 /**
+ * Represents a Code-Point Open CSV entry.
+ *
+ * Code-Point Open is a postal geography dataset that features a set of geographically referenced points that
+ * represent each of the 1.7 million postcode units in Great Britain. The centre of the postcode unit is derived
+ * from the precise coordinates of addresses sharing the same postcode unit in Ordnance Survey’s large-scale address
+ * database.
+ *
  * @author Mathias Bogaert
  */
 @CsvRecord(separator = ",")

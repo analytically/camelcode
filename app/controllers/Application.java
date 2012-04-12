@@ -1,6 +1,7 @@
 package controllers;
 
 import com.google.common.base.CharMatcher;
+import com.google.common.base.Strings;
 import models.PostcodeUnit;
 import play.data.Form;
 import play.data.validation.Constraints;
@@ -54,15 +55,17 @@ public class Application extends Controller {
         } else {
             Geocode geocode = geocodeForm.get();
 
-            PostcodeUnit unit = PostcodeUnit.find.field("postcode").equal(CharMatcher.WHITESPACE.removeFrom(geocode.postcode)).get();
+            PostcodeUnit unit = PostcodeUnit.find.field("postcode").equal(CharMatcher.WHITESPACE.removeFrom(geocode.postcode.toUpperCase())).get();
             return ok(toJson(unit.location));
         }
     }
 
     public static Result latLng(String postcode) {
-        if (postcode == null) return notFound();
+        if (Strings.isNullOrEmpty(postcode)) return badRequest("empty postcode");
+        postcode = CharMatcher.WHITESPACE.removeFrom(postcode.toUpperCase());
+        if (postcode.length() < 5 || postcode.length() > 7) return badRequest("illegal postcode format");
 
-        PostcodeUnit unit = PostcodeUnit.find.field("postcode").equal(CharMatcher.WHITESPACE.removeFrom(postcode.toUpperCase())).get();
+        PostcodeUnit unit = PostcodeUnit.find.field("postcode").equal(postcode).get();
         if (unit == null) {
             return notFound();
         } else {
@@ -77,15 +80,17 @@ public class Application extends Controller {
         } else {
             Geocode geocode = geocodeForm.get();
 
-            PostcodeUnit unit = PostcodeUnit.find.field("postcode").equal(CharMatcher.WHITESPACE.removeFrom(geocode.postcode)).get();
+            PostcodeUnit unit = PostcodeUnit.find.field("postcode").equal(CharMatcher.WHITESPACE.removeFrom(geocode.postcode.toUpperCase())).get();
             return ok(toJson(unit.cartesianLocation));
         }
     }
 
     public static Result eastingsNorthings(String postcode) {
-        if (postcode == null) return notFound();
+        if (Strings.isNullOrEmpty(postcode)) return badRequest("empty postcode");
+        postcode = CharMatcher.WHITESPACE.removeFrom(postcode.toUpperCase());
+        if (postcode.length() < 5 || postcode.length() > 7) return badRequest("illegal postcode format");
 
-        PostcodeUnit unit = PostcodeUnit.find.field("postcode").equal(CharMatcher.WHITESPACE.removeFrom(postcode.toUpperCase())).get();
+        PostcodeUnit unit = PostcodeUnit.find.field("postcode").equal(postcode).get();
         if (unit == null) {
             return notFound();
         } else {

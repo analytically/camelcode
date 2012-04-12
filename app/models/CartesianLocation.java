@@ -1,6 +1,7 @@
 package models;
 
 import com.google.code.morphia.annotations.Embedded;
+import com.google.code.morphia.annotations.Property;
 import com.google.common.base.Objects;
 
 /**
@@ -8,7 +9,10 @@ import com.google.common.base.Objects;
  */
 @Embedded
 public class CartesianLocation {
+    @Property("ea")
     public int eastings;
+
+    @Property("no")
     public int northings;
 
     public CartesianLocation() {
