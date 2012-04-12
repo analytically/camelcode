@@ -16,8 +16,8 @@ Edit `conf/application.conf` and point it to a MongoDB installation, and execute
 play run
 ```
 
-Then put the [CodePoint Open CSVs](https://www.ordnancesurvey.co.uk/opendatadownload/products.html) (scroll down, halfway down, 20mb)
-in the codepointopen directory.
+Then put the [CodePoint Open CSVs](https://www.ordnancesurvey.co.uk/opendatadownload/products.html) (scroll halfway down, 20mb)
+in the `codepointopen` directory.
 
 After they are processed, they will be moved to the `codepointopen/done` directory.
 
@@ -42,10 +42,10 @@ Technology
 * [GeoTools 8](http://www.geotools.org/) [converts](https://github.com/analytically/camelcode/blob/master/app/actors/ProcessCodePointOpenCsv.java#L68) the eastings/northings to latitude/longitude
 * [Guice](http://code.google.com/p/google-guice/) for [Dependency Injection](https://github.com/analytically/camelcode/blob/master/app/Global.java#L53) (not too much to inject yet though)
 * [Metrics](https://github.com/codahale/metrics) for metrics
-* MongoDB and Morphia as storage and ORM
-* Twitter Bootstrap and Font Awesome for the UI
+* [MongoDB](http://www.mongodb.org/) and [Morphia](http://code.google.com/p/morphia/) as storage and ORM
+* [Twitter Bootstrap](http://twitter.github.com/bootstrap/) and [Font Awesome](http://fortawesome.github.com/Font-Awesome/) for the UI
 
-This was developed in a single day, as a proof of concept. Do whatever you like with it. Free for commercial use.
+Developed as proof of concept in the afternoon of 11 April 2012 by Mathias Bogaert. Do whatever you like with it. Free for commercial use.
 
 Todo
 ----------
