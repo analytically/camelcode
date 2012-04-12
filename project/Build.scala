@@ -1,4 +1,3 @@
-import org.sbtidea.SbtIdeaPlugin
 import sbt._
 import Keys._
 import PlayProject._
@@ -48,8 +47,8 @@ object ApplicationBuild extends Build {
     resolvers += "Ibiblio" at "http://www.ibiblio.org/maven2/",
     resolvers += "Java.NET" at "http://download.java.net/maven/2",
     resolvers += "Open Source Geospatial Foundation Repository" at "http://download.osgeo.org/webdav/geotools/",
-    resolvers += "OpenGeo Maven Repository" at "http://repo.opengeo.org",
+    resolvers += "OpenGeo Maven Repository" at "http://repo.opengeo.org"
 
-    SbtIdeaPlugin.defaultClassifierPolicy := true
+    //SbtIdeaPlugin.defaultClassifierPolicy := true
   )
 }
