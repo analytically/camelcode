@@ -58,7 +58,7 @@ public class ProcessCPOCsvEntry extends UntypedActor {
                 DirectPosition eastNorth = new GeneralDirectPosition(Integer.parseInt(entry.getEastings()), Integer.parseInt(entry.getNorthings()));
                 DirectPosition latLng = osgbToWgs84Transform.transform(eastNorth, eastNorth);
 
-                unit.location = new Location(round(latLng.getOrdinate(0), 8), round(latLng.getOrdinate(1), 8));
+                unit.location = new Location(round(latLng.getOrdinate(1), 8), round(latLng.getOrdinate(0), 8));
             } finally {
                 latLongCtx.stop();
             }
