@@ -25,7 +25,7 @@ public class PostcodeUnit extends Model {
 
     // FINDERS ----------
 
-    public static final Finder<PostcodeUnit> find = new Finder<>(PostcodeUnit.class);
+    public static final Finder<PostcodeUnit> find = new Finder<PostcodeUnit>(PostcodeUnit.class);
 
     public PostcodeUnit() {
     }

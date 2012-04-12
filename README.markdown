@@ -5,7 +5,7 @@ A tech demo built on top of [Play Framework 2.0](http://www.playframework.org/) 
 [CodePoint Open](https://www.ordnancesurvey.co.uk/opendatadownload/products.html) UK postcode dataset
 and offers a Geocoding RESTful API and a map.
 
-Prerequisites: [JDK7](http://jdk7.java.net/), [MongoDB](http://www.mongodb.org/) and [Play Framework 2.0](http://www.playframework.org/).
+Prerequisites: [MongoDB](http://www.mongodb.org/) and [Play Framework 2.0](http://www.playframework.org/).
 
 Setup
 -----

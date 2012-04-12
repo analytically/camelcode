@@ -59,7 +59,9 @@ public class Global extends GlobalSettings {
                 if (!moduleClass.isAnonymousClass()) {
                     modules.add(moduleClass.newInstance());
                 }
-            } catch (InstantiationException | IllegalAccessException e) {
+            } catch (InstantiationException e) {
+                throw Throwables.propagate(e);
+            } catch (IllegalAccessException e) {
                 throw Throwables.propagate(e);
             }
         }
