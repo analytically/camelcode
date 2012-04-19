@@ -86,7 +86,7 @@ public class Global extends GlobalSettings {
         Set<Class<? extends AbstractModule>> guiceModules = reflections.getSubTypesOf(AbstractModule.class);
         for (Class<? extends Module> moduleClass : guiceModules) {
             try {
-                if (!moduleClass.isAnonymousClass() && !Modifier.isAbstract(moduleClass.getModifiers())) {
+                if (!moduleClass.isAnonymousClass()) {
                     modules.add(moduleClass.newInstance());
                 }
             } catch (InstantiationException e) {
