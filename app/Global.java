@@ -6,7 +6,6 @@ import akka.actor.UntypedActorFactory;
 import com.google.code.morphia.logging.MorphiaLoggerFactory;
 import com.google.code.morphia.logging.slf4j.SLF4JLogrImplFactory;
 import com.google.common.base.Function;
-import com.google.common.base.Preconditions;
 import com.google.common.base.Throwables;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
@@ -23,7 +22,6 @@ import com.google.inject.spi.TypeListener;
 import com.yammer.metrics.reporting.ConsoleReporter;
 import org.reflections.Reflections;
 import org.reflections.scanners.SubTypesScanner;
-import org.reflections.scanners.TypeAnnotationsScanner;
 import org.reflections.util.ClasspathHelper;
 import org.reflections.util.ConfigurationBuilder;
 import org.reflections.util.FilterBuilder;
@@ -47,8 +45,8 @@ import java.util.concurrent.TimeUnit;
 public class Global extends GlobalSettings {
     private final List<Module> modules = Lists.newArrayList();
 
-    private final List<AfterApplicationStartListener> afterApplicationStartListeners = new CopyOnWriteArrayList<AfterApplicationStartListener>();
-    private final List<BeforeApplicationStopListener> beforeApplicationStopListeners = new CopyOnWriteArrayList<BeforeApplicationStopListener>();
+    private final List<OnStartListener> onStartListeners = new CopyOnWriteArrayList<OnStartListener>();
+    private final List<OnStopListener> onStopListeners = new CopyOnWriteArrayList<OnStopListener>();
 
     static {
         MorphiaLoggerFactory.reset();
@@ -142,15 +140,15 @@ public class Global extends GlobalSettings {
                         typeEncounter.register(new InjectionListener<I>() {
                             @Override
                             public void afterInjection(final I i) {
-                                afterApplicationStartListeners.add(new AfterApplicationStartListener() {
+                                onStartListeners.add(new OnStartListener() {
                                     @Override
-                                    public void afterApplicationStart(Injector injector) {
+                                    public void onApplicationStart(Application application, Injector injector) {
                                         Logger.info(String.format("Starting %s", i.toString()));
                                         ((Service) i).start();
 
-                                        beforeApplicationStopListeners.add(new BeforeApplicationStopListener() {
+                                        onStopListeners.add(new OnStopListener() {
                                             @Override
-                                            public void beforeApplicationStop() {
+                                            public void onApplicationStop(Application application) {
                                                 Logger.info(String.format("Stopping %s", i.toString()));
                                                 ((Service) i).stop();
                                             }
@@ -176,30 +174,30 @@ public class Global extends GlobalSettings {
 
         Injector injector = Guice.createInjector(Stage.PRODUCTION, modules);
 
-        for (AfterApplicationStartListener listener : afterApplicationStartListeners) {
-            listener.afterApplicationStart(injector);
+        for (OnStartListener listener : onStartListeners) {
+            listener.onApplicationStart(app, injector);
         }
     }
 
     @Override
     public void onStop(Application app) {
-        for (BeforeApplicationStopListener listener : beforeApplicationStopListeners) {
-            listener.beforeApplicationStop();
+        for (OnStopListener listener : onStopListeners) {
+            listener.onApplicationStop(app);
         }
     }
 
     /**
      * Listener that will get invoked after the application is started.
      */
-    static interface AfterApplicationStartListener {
-        void afterApplicationStart(Injector injector);
+    static interface OnStartListener {
+        void onApplicationStart(Application application, Injector injector);
     }
 
     /**
      * Listener that will get invoked before the application is stopped.
      */
-    static interface BeforeApplicationStopListener {
-        void beforeApplicationStop();
+    static interface OnStopListener {
+        void onApplicationStop(Application application);
     }
 
     private static <K, V> ImmutableMap<K, V> fromKeys(Iterable<K> keys, Function<? super K, V> valueFunction) {
