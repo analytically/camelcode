@@ -26,6 +26,7 @@ import org.reflections.scanners.SubTypesScanner;
 import org.reflections.scanners.TypeAnnotationsScanner;
 import org.reflections.util.ClasspathHelper;
 import org.reflections.util.ConfigurationBuilder;
+import org.reflections.util.FilterBuilder;
 import play.Application;
 import play.GlobalSettings;
 import play.Logger;
@@ -34,6 +35,7 @@ import play.libs.Akka;
 import play.mvc.Controller;
 import utils.MoreMatchers;
 
+import java.lang.reflect.Modifier;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -53,9 +55,9 @@ public class Global extends GlobalSettings {
         MorphiaLoggerFactory.registerLogger(SLF4JLogrImplFactory.class);
     }
 
-    public static final class ActorProvider<T extends UntypedActor> implements Provider<ActorRef> {
-        private TypeLiteral<T> uta;
-        private Injector injector;
+    static final class ActorProvider<T extends UntypedActor> implements Provider<ActorRef> {
+        private final TypeLiteral<T> uta;
+        private final Injector injector;
 
         @Inject
         public ActorProvider(TypeLiteral<T> uta, Injector injector) {
@@ -76,17 +78,17 @@ public class Global extends GlobalSettings {
     @Override
     public void beforeStart(final Application application) {
         final Reflections reflections = new Reflections(new ConfigurationBuilder()
-                .addUrls(ClasspathHelper.forPackage("modules", application.classloader()))
+                .filterInputsBy(new FilterBuilder.Exclude(FilterBuilder.prefix("com.google")))
+                .addUrls(ClasspathHelper.forClassLoader(application.classloader()))
                 .addScanners(
-                        new SubTypesScanner(),
-                        new TypeAnnotationsScanner()
+                        new SubTypesScanner()
                 ));
 
         // automatic Guice module detection
         Set<Class<? extends AbstractModule>> guiceModules = reflections.getSubTypesOf(AbstractModule.class);
         for (Class<? extends Module> moduleClass : guiceModules) {
             try {
-                if (!moduleClass.isAnonymousClass()) {
+                if (!moduleClass.isAnonymousClass() && !Modifier.isAbstract(moduleClass.getModifiers())) {
                     modules.add(moduleClass.newInstance());
                 }
             } catch (InstantiationException e) {
@@ -95,7 +97,7 @@ public class Global extends GlobalSettings {
                 throw Throwables.propagate(e);
             }
         }
-        
+
         modules.add(new AbstractModule() {
             @Override
             protected void configure() {
@@ -133,7 +135,7 @@ public class Global extends GlobalSettings {
                         .toProvider(new TypeLiteral<ActorProvider<ProcessCPOCsvEntry>>() {
                         });
 
-                // start/stop listeners after injection and on shutdown of the Play app
+                // start/stop services after injection and on shutdown of the Play app
                 bindListener(MoreMatchers.subclassesOf(Service.class), new TypeListener() {
                     @Override
                     public <I> void hear(TypeLiteral<I> typeLiteral, TypeEncounter<I> typeEncounter) {
@@ -201,7 +203,6 @@ public class Global extends GlobalSettings {
     }
 
     private static <K, V> ImmutableMap<K, V> fromKeys(Iterable<K> keys, Function<? super K, V> valueFunction) {
-        Preconditions.checkNotNull(valueFunction, "Value function must not be null.");
         ImmutableMap.Builder<K, V> builder = ImmutableMap.builder();
         for (K key : keys) {
             V value = valueFunction.apply(key);
