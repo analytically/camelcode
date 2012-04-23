@@ -9,7 +9,7 @@ import com.google.common.base.Objects;
 /**
  * @author Mathias Bogaert
  */
-@Entity(value = "pcu", noClassnameStored = true)
+@Entity(value = "pcu", noClassnameStored = true, concern = "NORMAL")
 public class PostcodeUnit extends Model {
     @Indexed(unique = true)
     public String postcode;
