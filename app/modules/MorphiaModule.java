@@ -25,7 +25,7 @@ public class MorphiaModule extends AbstractModule {
     }
 
     @Provides
-    Datastore create(Mongo mongo, final Application application) {
+    Morphia createMorphia(final Application application) {
         Morphia morphia = new Morphia();
         morphia.getMapper().getOptions().objectFactory = new DefaultCreator() {
             @Override
@@ -34,7 +34,11 @@ public class MorphiaModule extends AbstractModule {
             }
         };
         morphia.mapPackage("models");
+        return morphia;
+    }
 
+    @Provides
+    Datastore createDatastore(Mongo mongo, Morphia morphia, final Application application) {
         Datastore datastore = morphia.createDatastore(
                 mongo,
                 application.configuration().getString("mongodb.db"),

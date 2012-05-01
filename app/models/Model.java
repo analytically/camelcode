@@ -24,7 +24,7 @@ import java.util.List;
  */
 public abstract class Model {
     @Inject
-    static Datastore datastore; // requestStaticInjection(..)
+    public static Datastore datastore; // requestStaticInjection(..)
 
     @Id
     @JsonIgnore

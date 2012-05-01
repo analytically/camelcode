@@ -43,7 +43,8 @@ Technology
 * [GeoTools 8](http://www.geotools.org/) [converts](https://github.com/analytically/camelcode/blob/master/app/actors/ProcessCPOCsvEntry.java#L68) the eastings/northings to latitude/longitude
 * [Guice](http://code.google.com/p/google-guice/) for [Dependency Injection](https://github.com/analytically/camelcode/blob/master/app/Global.java#L53) (not too much to inject yet though)
 * [Metrics](https://github.com/codahale/metrics) for metrics
-* [MongoDB](http://www.mongodb.org/) and [Morphia](http://code.google.com/p/morphia/) as storage and ORM
+* [MongoDB](http://www.mongodb.org/) as database with two-dimensional geospatial indexes (see [Geospatial Indexing](http://www.mongodb.org/display/DOCS/Geospatial+Indexing))
+* [Morphia](http://code.google.com/p/morphia/) for 'Object-Document Mapping'
 * [Leaflet](http://leaflet.cloudmade.com/) for the map
 * [Twitter Bootstrap](http://twitter.github.com/bootstrap/) and [Font Awesome](http://fortawesome.github.com/Font-Awesome/) for the UI
 
@@ -57,11 +58,6 @@ Royal Mail data &copy; Royal Mail copyright and database right 2011. Code-Point 
 data &copy; Crown copyright and database right 2011.
 
 OS data may be used under the terms of the [OS OpenData licence](http://www.ordnancesurvey.co.uk/oswebsite/docs/licences/os-opendata-licence.pdf).
-
-Todo
-----------
-
-* Fix distance calculation, Morphia does't do geoNear yet (grmbl)
 
 Screenshots
 -----------
