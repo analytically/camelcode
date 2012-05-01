@@ -51,11 +51,15 @@ public class ProcessCPOCsvEntry extends UntypedActor {
 
             PostcodeUnit unit = new PostcodeUnit(CharMatcher.WHITESPACE.removeFrom(entry.getPostcode()));
             unit.pqi = entry.getPositionalQualityIndicator();
-            unit.cartesianLocation = new CartesianLocation(Integer.parseInt(entry.getEastings()), Integer.parseInt(entry.getNorthings()));
+
+            int eastings = Integer.parseInt(entry.getEastings());
+            int northings = Integer.parseInt(entry.getNorthings());
+
+            unit.cartesianLocation = new CartesianLocation(eastings, northings);
 
             final TimerContext latLongCtx = latLongTransform.time();
             try {
-                DirectPosition eastNorth = new GeneralDirectPosition(Integer.parseInt(entry.getEastings()), Integer.parseInt(entry.getNorthings()));
+                DirectPosition eastNorth = new GeneralDirectPosition(eastings, northings);
                 DirectPosition latLng = osgbToWgs84Transform.transform(eastNorth, eastNorth);
 
                 unit.location = new Location(round(latLng.getOrdinate(1), 8), round(latLng.getOrdinate(0), 8));

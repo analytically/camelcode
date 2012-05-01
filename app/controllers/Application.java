@@ -48,7 +48,7 @@ public class Application extends Controller {
     public static Result index() {
         return ok(index.render(form(DistanceCalc.class), form(Geocode.class), new ArrayList<PostcodeUnit>()));
     }
-    
+
     public static Result map() {
         return ok(map.render());
     }
@@ -60,14 +60,14 @@ public class Application extends Controller {
         } else {
             Geocode geocode = geocodeForm.get();
 
-            PostcodeUnit unit = PostcodeUnit.find.field("postcode").equal(CharMatcher.WHITESPACE.removeFrom(geocode.postcode.toUpperCase())).get();
+            PostcodeUnit unit = PostcodeUnit.find.field("postcode").equal(CharMatcher.WHITESPACE.removeFrom(geocode.postcode).toUpperCase()).get();
             return ok(toJson(unit.location));
         }
     }
 
     public static Result latLng(String postcode) {
         if (Strings.isNullOrEmpty(postcode)) return badRequest("empty postcode");
-        postcode = CharMatcher.WHITESPACE.removeFrom(postcode.toUpperCase());
+        postcode = CharMatcher.WHITESPACE.removeFrom(postcode).toUpperCase();
         if (postcode.length() < 5 || postcode.length() > 7) return badRequest("illegal postcode format");
 
         PostcodeUnit unit = PostcodeUnit.find.field("postcode").equal(postcode).get();
@@ -85,14 +85,14 @@ public class Application extends Controller {
         } else {
             Geocode geocode = geocodeForm.get();
 
-            PostcodeUnit unit = PostcodeUnit.find.field("postcode").equal(CharMatcher.WHITESPACE.removeFrom(geocode.postcode.toUpperCase())).get();
+            PostcodeUnit unit = PostcodeUnit.find.field("postcode").equal(CharMatcher.WHITESPACE.removeFrom(geocode.postcode).toUpperCase()).get();
             return ok(toJson(unit.cartesianLocation));
         }
     }
 
     public static Result eastingsNorthings(String postcode) {
         if (Strings.isNullOrEmpty(postcode)) return badRequest("empty postcode");
-        postcode = CharMatcher.WHITESPACE.removeFrom(postcode.toUpperCase());
+        postcode = CharMatcher.WHITESPACE.removeFrom(postcode).toUpperCase();
         if (postcode.length() < 5 || postcode.length() > 7) return badRequest("illegal postcode format");
 
         PostcodeUnit unit = PostcodeUnit.find.field("postcode").equal(postcode).get();
@@ -102,7 +102,7 @@ public class Application extends Controller {
             return ok(toJson(unit.cartesianLocation));
         }
     }
-    
+
     public static Result near(String latitude, String longitude) {
         List<PostcodeUnit> units = PostcodeUnit.find.field("location").near(Double.parseDouble(latitude), Double.parseDouble(longitude)).asList();
         return ok(toJson(units));
@@ -115,7 +115,7 @@ public class Application extends Controller {
         } else {
             DistanceCalc calc = distanceCalcForm.get();
 
-            PostcodeUnit postcode = PostcodeUnit.find.field("postcode").equal(CharMatcher.WHITESPACE.removeFrom(calc.postcode)).get();
+            PostcodeUnit postcode = PostcodeUnit.find.field("postcode").equal(CharMatcher.WHITESPACE.removeFrom(calc.postcode).toUpperCase()).get();
             List<PostcodeUnit> near = PostcodeUnit.find.field("location")
                     .near(postcode.location.latitude, postcode.location.longitude)
                     .limit(10)

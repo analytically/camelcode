@@ -12,7 +12,7 @@ GET     /latlng/:postcode                   controllers.Application.latLng(postc
 GET     /en                                 controllers.Application.en
 GET     /eastingnorthings/:postcode         controllers.Application.eastingsNorthings(postcode: String)
 
-GET     /near/:lat/:lng                    controllers.Application.near(lat: String, lng: String)
+GET     /near/:lat/:lng                     controllers.Application.near(lat: String, lng: String)
 POST    /calc                               controllers.Application.calc()
 
 # Utilities for debugging server issues

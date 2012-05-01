@@ -7,11 +7,11 @@ object ApplicationBuild extends Build {
   val appVersion = "1.0-SNAPSHOT"
 
   val appDependencies = Seq(
-    "org.apache.camel" % "camel-core" % "2.9.1",
-    "org.apache.camel" % "camel-csv" % "2.9.1",
-    "org.apache.camel" % "camel-bindy" % "2.9.1",
-    "org.apache.camel" % "camel-jackson" % "2.9.1",
-    "org.apache.camel" % "camel-http" % "2.9.1",
+    "org.apache.camel" % "camel-core" % "2.9.2",
+    "org.apache.camel" % "camel-csv" % "2.9.2",
+    "org.apache.camel" % "camel-bindy" % "2.9.2",
+    "org.apache.camel" % "camel-jackson" % "2.9.2",
+    "org.apache.camel" % "camel-http" % "2.9.2",
 
     "xml-apis" % "xml-apis-xerces" % "2.7.1" from "http://repo.opengeo.org/xml-apis/xml-apis-xerces/2.7.1/xml-apis-xerces-2.7.1.jar",
     "jgridshift" % "jgridshift" % "1.0" from "http://download.osgeo.org/webdav/geotools/jgridshift/jgridshift/1.0/jgridshift-1.0.jar",
@@ -25,7 +25,7 @@ object ApplicationBuild extends Build {
       ),
 
     // Metrics
-    "com.yammer.metrics" % "metrics-core" % "2.1.0",
+    "com.yammer.metrics" % "metrics-core" % "2.1.1",
 
     // Guice
     "com.google.inject" % "guice" % "3.0",
