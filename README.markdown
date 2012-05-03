@@ -39,8 +39,8 @@ Technology
 
 * [Play Framework 2.0](http://www.playframework.org/), thank god for this!
 * [Apache Camel](http://camel.apache.org/) to [process and monitor](https://github.com/analytically/camelcode/blob/master/app/Global.java#L103) the `codepointopen` directory and to tell the actors about the postcodes (split(body()))
-* [Akka 2.0](http://akka.io/) provides a nice concurrent model [to process the 1.7 million postcodes](https://github.com/analytically/camelcode/blob/master/app/actors/ProcessCodePointOpenCsv.java) in under one minute on modern hardware
-* [GeoTools 8](http://www.geotools.org/) [converts](https://github.com/analytically/camelcode/blob/master/app/actors/ProcessCPOCsvEntry.java#L68) the eastings/northings to latitude/longitude
+* [Akka 2.0](http://akka.io/) provides a nice concurrent model [to process the 1.7 million postcodes](https://github.com/analytically/camelcode/blob/master/app/actors/ProcessCPOCsvEntry.java) in under one minute on modern hardware
+* [GeoTools 8](http://www.geotools.org/) [converts](https://github.com/analytically/camelcode/blob/master/app/actors/ProcessCPOCsvEntry.java) the eastings/northings to latitude/longitude
 * [Guice](http://code.google.com/p/google-guice/) for [Dependency Injection](https://github.com/analytically/camelcode/blob/master/app/Global.java#L53) (not too much to inject yet though)
 * [Metrics](https://github.com/codahale/metrics) for metrics
 * [MongoDB](http://www.mongodb.org/) as database with two-dimensional geospatial indexes (see [Geospatial Indexing](http://www.mongodb.org/display/DOCS/Geospatial+Indexing))
