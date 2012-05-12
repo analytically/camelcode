@@ -43,11 +43,6 @@ import java.util.concurrent.TimeUnit;
  * @author Mathias Bogaert
  */
 public class Global extends GlobalSettings {
-    private final List<Module> modules = Lists.newArrayList();
-
-    private final List<OnStartListener> onStartListeners = new CopyOnWriteArrayList<OnStartListener>();
-    private final List<OnStopListener> onStopListeners = new CopyOnWriteArrayList<OnStopListener>();
-
     static {
         MorphiaLoggerFactory.reset();
         MorphiaLoggerFactory.registerLogger(SLF4JLogrImplFactory.class);
@@ -72,6 +67,11 @@ public class Global extends GlobalSettings {
             }));
         }
     }
+
+    private final List<Module> modules = Lists.newArrayList();
+
+    private final List<OnStartListener> onStartListeners = new CopyOnWriteArrayList<OnStartListener>();
+    private final List<OnStopListener> onStopListeners = new CopyOnWriteArrayList<OnStopListener>();
 
     @Override
     public void beforeStart(final Application application) {
