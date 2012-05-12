@@ -25,7 +25,7 @@ object ApplicationBuild extends Build {
       ),
 
     // Metrics
-    "com.yammer.metrics" % "metrics-core" % "2.1.1",
+    "com.yammer.metrics" % "metrics-core" % "2.1.2",
 
     // Guice
     "com.google.inject" % "guice" % "3.0",
