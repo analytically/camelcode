@@ -1,9 +1,7 @@
 @main("Postcode Map") {
 
 <div id="map"></div>
-
 <script type="text/javascript">
-
     var subDomains = ['otile1', 'otile2', 'otile3', 'otile4'],
             aerialSubDomains = ['oatile1', 'oatile2', 'oatile3', 'oatile4'],
             options = {maxZoom:18, subdomains:subDomains},
@@ -35,7 +33,7 @@
 
     var postcodeIcon = L.Icon.extend({
         options:{
-            iconUrl:L.ROOT_URL + '../images/maki/marker-solid-18.png',
+            iconUrl: '../../assets/images/maki/marker-solid-18.png',
             shadowUrl:null,
             iconSize:new L.Point(24, 24),
             shadowSize:null,
@@ -98,8 +96,7 @@
     var layersControl = new L.Control.Layers(baseMaps, overlayMaps);
     map.addControl(layersControl);
 
-    map.addControl(new L.Control.Scale({maxWidth:700, metric:false}));
-    map.addControl(new L.Control.Scale({maxWidth:300, metric:false}));
-    map.addControl(new L.Control.Scale({maxWidth:100, metric:false}));
+    map.addControl(new L.Control.Scale({maxWidth:800, metric:false}));
+    map.addControl(new L.Control.Scale({maxWidth:400, metric:false}));
 </script>
 }

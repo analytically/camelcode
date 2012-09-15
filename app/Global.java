@@ -113,6 +113,8 @@ public class Global extends GlobalSettings {
                 }));
 
                 for (Class<? extends Controller> controllerClass : reflections.getSubTypesOf(Controller.class)) {
+                    Logger.info("Static injection for " + controllerClass);
+
                     requestStaticInjection(controllerClass);
                 }
 
@@ -166,12 +168,6 @@ public class Global extends GlobalSettings {
     @Override
     public void onStart(Application app) {
         Logger.info("Creating injector with " + modules.size() + " modules.");
-
-        // log to the console every minute in DEV
-        if (Play.isDev()) {
-            ConsoleReporter.enable(1, TimeUnit.MINUTES);
-        }
-
         Injector injector = Guice.createInjector(Stage.PRODUCTION, modules);
 
         for (OnStartListener listener : onStartListeners) {

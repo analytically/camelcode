@@ -19,6 +19,7 @@ import org.opengis.geometry.DirectPosition;
 import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.operation.MathTransform;
+import org.opengis.referencing.operation.TransformException;
 
 import java.util.concurrent.TimeUnit;
 
@@ -45,27 +46,34 @@ public class ProcessCPOCsvEntry extends UntypedActor {
     }
 
     @Override
-    public void onReceive(Object message) throws Exception {
+    public void onReceive(Object message) {
         if (message instanceof CodePointOpenCsvEntry) {
             CodePointOpenCsvEntry entry = (CodePointOpenCsvEntry) message;
 
             PostcodeUnit unit = new PostcodeUnit(CharMatcher.WHITESPACE.removeFrom(entry.getPostcode()));
             unit.pqi = entry.getPositionalQualityIndicator();
 
-            int eastings = Integer.parseInt(entry.getEastings());
-            int northings = Integer.parseInt(entry.getNorthings());
-
-            unit.cartesianLocation = new CartesianLocation(eastings, northings);
-
-            final TimerContext latLongCtx = latLongTransform.time();
             try {
-                DirectPosition eastNorth = new GeneralDirectPosition(eastings, northings);
-                DirectPosition latLng = osgbToWgs84Transform.transform(eastNorth, eastNorth);
+                int eastings = Integer.parseInt(entry.getEastings());
+                int northings = Integer.parseInt(entry.getNorthings());
 
-                unit.location = new Location(round(latLng.getOrdinate(1), 8), round(latLng.getOrdinate(0), 8));
-            } finally {
-                latLongCtx.stop();
+                unit.cartesianLocation = new CartesianLocation(eastings, northings);
+
+                final TimerContext latLongCtx = latLongTransform.time();
+                try {
+                    DirectPosition eastNorth = new GeneralDirectPosition(eastings, northings);
+                    DirectPosition latLng = osgbToWgs84Transform.transform(eastNorth, eastNorth);
+
+                    unit.location = new Location(round(latLng.getOrdinate(1), 8), round(latLng.getOrdinate(0), 8));
+                } finally {
+                    latLongCtx.stop();
+                }
+            } catch (NumberFormatException e) {
+                throw new RuntimeException("NumberFormatException parsing easting/northings '" + entry.getEastings() + ", " + entry.getNorthings() + "'.");
+            } catch (TransformException e) {
+                throw Throwables.propagate(e);
             }
+
 
             final TimerContext saveCtx = savePostcodeUnit.time();
             try {
