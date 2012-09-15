@@ -8,6 +8,8 @@ and offers a Geocoding RESTful API and a map. It also demonstrates how
 
 Prerequisites: [MongoDB](http://www.mongodb.org/) and [Play Framework 2.0](http://www.playframework.org/).
 
+Development sponsored by [Coen Recruitment](http://www.coen.co.uk). Follow [@analytically](http://twitter.com/analytically) on Twitter for updates.
+
 Setup
 -----
 
