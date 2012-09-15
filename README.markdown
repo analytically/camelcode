@@ -4,7 +4,7 @@ CamelCode
 A tech demo built on top of [Play framework 2](http://www.playframework.org/) that imports the
 [CodePoint Open](https://www.ordnancesurvey.co.uk/opendatadownload/products.html) UK postcode dataset
 and offers a Geocoding RESTful API and a map. It also demonstrates how
-[Google Guice](http://code.google.com/p/google-guice/) can be integrated in a Play 2.0 Java application.
+[Google Guice](http://code.google.com/p/google-guice/) can be integrated in a Play 2 Java application.
 
 Prerequisites: [MongoDB](http://www.mongodb.org/) and [Play framework 2.0.3](http://www.playframework.org/).
 
