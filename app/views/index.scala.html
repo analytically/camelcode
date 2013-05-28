@@ -8,11 +8,9 @@
         <h1>CamelCode</h1>
 
         <p class="lead">
-            A tech demo built on top of <a href="http://www.playframework.org/">Play framework 2.1</a> that
+            A tech demo built using <a href="http://www.playframework.org/">Play! 2.1</a> that
             imports the <a href="https://www.ordnancesurvey.co.uk/opendatadownload/products.html">CodePoint Open</a> UK
-            postcode dataset and offers a Geocoding RESTful API. Check the server
-            <a href="@routes.Server.metrics()"><i class="icon-cogs"></i> metrics</a> and
-            <a href="@routes.Server.health()"><i class="icon-heart"></i> health</a>.
+            postcode dataset and offers a Geocoding REST API.
         </p>
     </div>
 </div>
@@ -37,10 +35,10 @@
             </p>
         </div>
         <div class="span4">
-            <h3><i class="icon-heart-empty"></i> Shoulders</h3>
+            <h3><i class="icon-heart"></i> Shoulders</h3>
             <p>
                 Built standing on the shoulders of
-                <a href="http://www.playframework.org/" target="_blank">Play framework 2.1 <i class="icon-external-link"></i></a>,
+                <a href="http://www.playframework.org/" target="_blank">Play! 2.1 <i class="icon-external-link"></i></a>,
                 <a href="http://camel.apache.org/" target="_blank">Apache Camel <i class="icon-external-link"></i></a>,
                 <a href="http://www.geotools.org/" target="_blank">GeoTools <i class="icon-external-link"></i></a>,
                 <a href="http://www.mongodb.org/" target="_blank">MongoDB <i class="icon-external-link"></i></a>,
@@ -55,12 +53,12 @@
         <div class="span4">
             <h3><i class="icon-beer"></i> Completely free</h3>
             <p>
-                The CamelCode project is free for commercial use. Feeling guilty? Buy me a (belgian) beer.
-                Follow <a href="http://twitter.com/analytically" target="_blank">@@analytically <i class="icon-twitter-sign"></i></a>
+                The CamelCode project is free for commercial use. Feeling guilty? Buy me a <a href="http://en.wikipedia.org/wiki/Beer_in_Belgium">(Belgian) beer</a>.
+                Follow <a href="http://twitter.com/analytically" target="_blank"><i class="icon-twitter-sign"></i> @@analytically</a>
                 for updates and programming tips and tricks. Development sponsored by <a href="http://www.coen.co.uk">Coen Recruitment</a>.
             </p>
         </div>
-        <div class="span8 tabbable tabs-left">
+        <div class="span4 tabbable tabs-left">
             <ul id="tab" class="nav nav-tabs">
                 <li class="active"><a href="#distance" data-toggle="tab">Distance</a></li>
                 <li><a href="#ll" data-toggle="tab">Latitude/Longitude</a></li>
@@ -75,14 +73,11 @@
                         <input type="text" class="input-small" id="@id" name="@name" value="@value" @toHtmlArgs(args)>
                         }
 
-                        @helper.input(distanceCalc("distance"), '_label -> "Distance (in miles):") { (id, name, value, args) =>
+                        @helper.input(distanceCalc("distance"), '_label -> "Distance (miles):") { (id, name, value, args) =>
                         <input type="text" class="input-small" id="@id" name="@name" value="@value" @toHtmlArgs(args)>
                         }
 
-                        <div class="form-actions">
-                            <button type="submit" class="btn btn-primary">Calculate</button>
-                            <a href="@routes.Application.index()" class="btn">Cancel</a>
-                        </div>
+                        <button type="submit" class="btn btn-primary">Show postcodes</button>
                     </fieldset>
                     }
                 </div>
@@ -93,10 +88,7 @@
                         <input type="text" class="input-small" id="@id" name="@name" value="@value" @toHtmlArgs(args)>
                         }
 
-                        <div class="form-actions">
-                            <button type="submit" class="btn btn-primary">Geocode lat-long</button>
-                            <a href="@routes.Application.index()" class="btn">Cancel</a>
-                        </div>
+                        <button type="submit" class="btn btn-primary">Geocode</button>
                     </fieldset>
                     }
                 </div>
@@ -107,14 +99,18 @@
                         <input type="text" class="input-small" id="@id" name="@name" value="@value" @toHtmlArgs(args)>
                         }
 
-                        <div class="form-actions">
-                            <button type="submit" class="btn btn-primary">Geocode eastings-northings</button>
-                            <a href="@routes.Application.index()" class="btn">Cancel</a>
-                        </div>
+                        <button type="submit" class="btn btn-primary">Geocode</button>
                     </fieldset>
                     }
                 </div>
             </div>
+        </div>
+        <div class="span4">
+            <h3><i class="icon-bar-chart"></i> Metrics</h3>
+
+            Check the server
+            <a href="@routes.Server.metrics()"><i class="icon-cogs"></i> metrics</a> and
+            <a href="@routes.Server.health()"><i class="icon-medkit"></i> health</a>.
         </div>
     </div>
 

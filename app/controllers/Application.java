@@ -129,9 +129,22 @@ public class Application extends Controller {
             DistanceCalc calc = distanceCalcForm.get();
 
             PostcodeUnit postcode = PostcodeUnit.find.field("postcode").equal(CharMatcher.WHITESPACE.removeFrom(calc.postcode).toUpperCase()).get();
-            List<PostcodeUnit> near = findNearMiles(postcode.location.latitude, postcode.location.longitude, calc.distance, 20);
+            List<PostcodeUnit> near = findNearMiles(postcode.location.latitude, postcode.location.longitude, calc.distance, 100);
 
-            flash("success", "Found " + near.size() + " post codes within " + calc.distance + " miles from " + postcode.postcode);
+            StringBuilder message = new StringBuilder();
+            message.append("Found ")
+                    .append(near.size())
+                    .append(" post codes within ")
+                    .append(calc.distance)
+                    .append(" miles from ")
+                    .append(postcode.postcode)
+                    .append(".");
+
+            if (near.size() == 100) {
+                message.append(" The list was capped to 100 postcodes.");
+            }
+
+            flash("success", message.toString());
 
             return ok(index.render(distanceCalcForm, form(Geocode.class), near));
         }

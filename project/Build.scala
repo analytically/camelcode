@@ -36,16 +36,14 @@ object Build extends sbt.Build {
     "com.google.inject.extensions" % "guice-throwingproviders" % "3.0",
 
     // Morphia
-    "com.google.code.morphia" % "morphia" % "0.101.0-RC1", // checkout Morphia manually and execute 'mvn install'
-    "com.google.code.morphia" % "morphia-logging-slf4j" % "0.101.0-RC1"
+    "com.google.code.morphia" % "morphia" % "0.101.0-SNAPSHOT",
+    "com.google.code.morphia" % "morphia-logging-slf4j" % "0.101.0-SNAPSHOT"
   )
 
   val main = play.Project(appName, appVersion, appDependencies).settings(
     lessEntryPoints <<= baseDirectory(_ ** "camelcode.less"),
 
-    resolvers += "Local Maven Repository" at "file://" + Path.userHome + "/.m2/repository",
-    resolvers += "Codehaus Repository" at "http://repository.codehaus.org/",
-    resolvers += "Java.NET" at "http://download.java.net/maven/2",
+    resolvers += "Morphia Repo" at "http://morphia.googlecode.com/svn/mavenrepo/",
     resolvers += "Open Source Geospatial Foundation Repository" at "http://download.osgeo.org/webdav/geotools/",
     resolvers += "OpenGeo Maven Repository" at "http://repo.opengeo.org"
   )

@@ -1,12 +1,12 @@
 CamelCode [![Build Status](https://travis-ci.org/analytically/camelcode.png)](https://travis-ci.org/analytically/camelcode)
 =========
 
-A tech demo built using [Play! 2.1](http://www.playframework.org/) that imports the
+A tech demo built using [Play! 2.1](http://www.playframework.org) (java) that imports the
 [CodePoint Open](https://www.ordnancesurvey.co.uk/opendatadownload/products.html) UK postcode dataset
 and offers a Geocoding RESTful API and a map. It also demonstrates how
 [Google Guice](http://code.google.com/p/google-guice/) can be integrated in a Play 2.1 Java application.
 
-Prerequisites: [MongoDB](http://www.mongodb.org/) and [Play! 2.1](http://www.playframework.org/).
+Prerequisites: [MongoDB](http://www.mongodb.org) and [Play! 2.1](http://www.playframework.org).
 
 Development sponsored by [Coen Recruitment](http://www.coen.co.uk). Follow [@analytically](http://twitter.com/analytically) on Twitter for updates.
 
@@ -19,12 +19,12 @@ Edit `conf/application.conf` and point it to a MongoDB installation, and execute
 play run
 ```
 
-Then put the [CodePoint Open CSVs](https://www.ordnancesurvey.co.uk/opendatadownload/products.html) (scroll halfway down, 20mb)
-in the `codepointopen` directory.
+Then drop the [CodePoint Open CSV](https://www.ordnancesurvey.co.uk/opendatadownload/products.html) (scroll halfway down, 20mb)
+files in the `codepointopen` directory.
 
-After they are processed, they will be moved to the `codepointopen/done` directory.
+After each file is imported, it will be moved to the `codepointopen/done` directory.
 
-Then visit [http://localhost:9000/](http://localhost:9000/) and you should see the welcome screen.
+Then visit [http://localhost:9000](http://localhost:9000) and you should see the welcome screen.
 Visit [http://localhost:9000/servermetrics](http://localhost:9000/servermetrics) for server metrics.
 
 JSON
@@ -49,15 +49,15 @@ Screenshots
 Technology
 ----------
 
-* [Play! 2.1](http://www.playframework.org/), thank god for this!
-* [Apache Camel](http://camel.apache.org/) to [process and monitor](https://github.com/analytically/camelcode/blob/master/app/Global.java#L103) the `codepointopen` directory and to tell the actors about the postcodes (split(body()))
-* [Akka 2.1](http://akka.io/) provides a nice concurrent model [to process the 1.7 million postcodes](https://github.com/analytically/camelcode/blob/master/app/actors/ProcessCPOCsvEntry.java) in under one minute on modern hardware
-* [GeoTools 8](http://www.geotools.org/) [converts](https://github.com/analytically/camelcode/blob/master/app/actors/ProcessCPOCsvEntry.java) the eastings/northings to latitude/longitude
+* [Play! 2.1](http://www.playframework.org), as web framework
+* [Apache Camel](http://camel.apache.org) to [process and monitor](https://github.com/analytically/camelcode/blob/master/app/Global.java#L103) the `codepointopen` directory and to tell the actors about the postcodes (split(body()))
+* [Akka 2.1](http://akka.io) provides a nice concurrency model [to process the 1.7 million postcodes](https://github.com/analytically/camelcode/blob/master/app/actors/ProcessCPOCsvEntry.java) in under one minute on modern hardware
+* [GeoTools 8](http://www.geotools.org) [converts](https://github.com/analytically/camelcode/blob/master/app/actors/ProcessCPOCsvEntry.java) the eastings/northings to latitude/longitude
 * [Guice](http://code.google.com/p/google-guice/) for [Dependency Injection](https://github.com/analytically/camelcode/blob/master/app/Global.java#L53) (not too much to inject yet though)
 * [Metrics](https://github.com/codahale/metrics) for metrics
-* [MongoDB](http://www.mongodb.org/) as database with two-dimensional geospatial indexes (see [Geospatial Indexing](http://www.mongodb.org/display/DOCS/Geospatial+Indexing))
+* [MongoDB](http://www.mongodb.org) as database with two-dimensional geospatial indexes (see [Geospatial Indexing](http://www.mongodb.org/display/DOCS/Geospatial+Indexing))
 * [Morphia](http://code.google.com/p/morphia/) for 'Object-Document Mapping'
-* [Leaflet](http://leaflet.cloudmade.com/) for the map
+* [Leaflet](http://leaflet.cloudmade.com) for the map
 * [Twitter Bootstrap](http://twitter.github.com/bootstrap/) and [Font Awesome](http://fortawesome.github.com/Font-Awesome/) for the UI
 
 License
