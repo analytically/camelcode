@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Camelcode : A tech demo built using Play! 2.1 that imports the CodePoint Open UK postcode dataset and offers a Geocoding REST API and a postcode map." />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Camelcode</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/analytically/camelcode">View on GitHub</a>
+
+          <h1 id="project_title">Camelcode</h1>
+          <h2 id="project_tagline">A tech demo built using Play! 2.1 that imports the CodePoint Open UK postcode dataset and offers a Geocoding REST API and a postcode map.</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/analytically/camelcode/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/analytically/camelcode/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>CamelCode</h1>
+
+<p>A tech demo built using <a href="http://www.playframework.org">Play! 2.1</a> (java) that imports the
+<a href="https://www.ordnancesurvey.co.uk/opendatadownload/products.html">CodePoint Open</a> UK postcode dataset
+and offers a Geocoding RESTful API and a map. It also demonstrates how
+<a href="http://code.google.com/p/google-guice/">Google Guice</a> can be integrated in a Play 2.1 Java application.</p>
+
+<p>Development sponsored by <a href="http://www.coen.co.uk">Coen Recruitment</a>. Follow <a href="http://twitter.com/analytically">@analytically</a> on Twitter for updates.</p>
+
+<h3>Requirements</h3>
+
+<ul>
+<li>JDK 6 or later</li>
+<li><a href="http://www.playframework.org">Play! 2.1</a></li>
+<li><a href="http://www.mongodb.org">MongoDB</a></li>
+</ul><h3>Setup</h3>
+
+<p>Edit <code>conf/application.conf</code> and point it to a MongoDB installation, and execute</p>
+
+<pre lang="shell"><code>play run
+</code></pre>
+
+<p>Then drop the <a href="https://www.ordnancesurvey.co.uk/opendatadownload/products.html">CodePoint Open CSV</a> (scroll halfway down, 20mb)
+files in the <code>codepointopen</code> directory.</p>
+
+<p>After each file is imported, it will be moved to the <code>codepointopen/done</code> directory.</p>
+
+<p>Then visit <a href="http://localhost:9000">http://localhost:9000</a> and you should see the welcome screen.
+Visit <a href="http://localhost:9000/servermetrics">http://localhost:9000/servermetrics</a> for server metrics.</p>
+
+<h3>REST API and JSON</h3>
+
+<p>GET <a href="http://localhost:9000/latlng/BS106TF">http://localhost:9000/latlng/POSTCODE</a> to geocode a UK postcode. Response will be JSON:</p>
+
+<div class="highlight"><pre><span class="p">{</span><span class="nt">"latitude"</span><span class="p">:</span><span class="mf">51.505615</span><span class="p">,</span><span class="nt">"longitude"</span><span class="p">:</span><span class="mf">-2.6120315</span><span class="p">}</span>
+</pre></div>
+
+<h3>Screenshots</h3>
+
+<p><img src="https://github.com/analytically/camelcode/raw/master/screenshot.png" alt="Welcome Page"></p>
+
+<hr><p><img src="https://github.com/analytically/camelcode/raw/master/screenshot2.png" alt="Map"></p>
+
+<h3>Technology</h3>
+
+<ul>
+<li>
+<a href="http://www.playframework.org">Play! 2.1</a>, as web framework</li>
+<li>
+<a href="http://camel.apache.org">Apache Camel</a> to <a href="https://github.com/analytically/camelcode/blob/master/app/Global.java#L103">process and monitor</a> the <code>codepointopen</code> directory and to tell the actors about the postcodes (split(body()))</li>
+<li>
+<a href="http://akka.io">Akka 2.1</a> provides a nice concurrency model <a href="https://github.com/analytically/camelcode/blob/master/app/actors/ProcessCPOCsvEntry.java">to process the 1.7 million postcodes</a> in under one minute on modern hardware</li>
+<li>
+<a href="http://www.geotools.org">GeoTools 8</a> <a href="https://github.com/analytically/camelcode/blob/master/app/actors/ProcessCPOCsvEntry.java">converts</a> the eastings/northings to latitude/longitude</li>
+<li>
+<a href="http://code.google.com/p/google-guice/">Guice</a> for <a href="https://github.com/analytically/camelcode/blob/master/app/Global.java#L53">Dependency Injection</a> (not too much to inject yet though)</li>
+<li>
+<a href="https://github.com/codahale/metrics">Metrics</a> for metrics</li>
+<li>
+<a href="http://www.mongodb.org">MongoDB</a> as database with two-dimensional geospatial indexes (see <a href="http://www.mongodb.org/display/DOCS/Geospatial+Indexing">Geospatial Indexing</a>)</li>
+<li>
+<a href="http://code.google.com/p/morphia/">Morphia</a> for 'Object-Document Mapping'</li>
+<li>
+<a href="http://leaflet.cloudmade.com">Leaflet</a> for the map</li>
+<li>
+<a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a> and <a href="http://fortawesome.github.com/Font-Awesome/">Font Awesome</a> for the UI</li>
+</ul><h3>License</h3>
+
+<p>Licensed under the <a href="http://en.wikipedia.org/wiki/WTFPL">WTFPL</a>.</p>
+
+<p>This data contains Ordnance Survey data © Crown copyright and database right 2013. Code-Point Open contains
+Royal Mail data © Royal Mail copyright and database right 2012. Code-Point Open and ONSPD contains National Statistics
+data © Crown copyright and database right 2013.</p>
+
+<p>OS data may be used under the terms of the <a href="http://www.ordnancesurvey.co.uk/oswebsite/docs/licences/os-opendata-licence.pdf">OS OpenData licence</a>.</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Camelcode maintained by <a href="https://github.com/analytically">analytically</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
