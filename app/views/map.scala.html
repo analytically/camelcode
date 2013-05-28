@@ -25,7 +25,7 @@
 
     var baseMaps = {
         "Map":normal,
-        "Sattelite":aerial
+        "Satellite":aerial
     };
 
     var overlayMaps = {
@@ -42,7 +42,6 @@
         }
     });
 
-    map.markerZoomAnimation.disable();
     map.doubleClickZoom.disable();
     map.on('click', onClick);
     function onClick(e) {

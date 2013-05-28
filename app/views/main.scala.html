@@ -15,12 +15,31 @@
 
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
 
-        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap.no-icons.min.css">
-        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/2.0/css/font-awesome.css">
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css">
+        <style type="text/css">
+            .jumbotron {
+                padding: 20px 0;
+                margin-bottom: 10px;
+                text-align: center;
+                border-bottom: 1px solid #d1e6ff;
+                background: #d1e6ff repeat-x;
+            }
+            .jumbotron h1 {
+                font-size: 72px;
+                line-height: 1;
+            }
 
-        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.4.5/leaflet.css" />
+            .jumbotron .btn {
+                font-size: 21px;
+                padding: 14px 24px;
+            }
+        </style>
+
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css">
+
+        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.css" />
         <!--[if lte IE 8]>
-            <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.4.5/leaflet.ie.css" />
+            <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.ie.css" />
         <![endif]-->
 
         <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -39,9 +58,9 @@
     </head>
 
     <body>
-        <script type="text/javascript" language="javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-        <script type="text/javascript" language="javascript" src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
-        <script type="text/javascript" language="javascript" src="//cdn.leafletjs.com/leaflet-0.4.5/leaflet.js"></script>
+        <script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-2.0.1.js"></script>
+        <script type="text/javascript" language="javascript" src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script type="text/javascript" language="javascript" src="//cdn.leafletjs.com/leaflet-0.5.1/leaflet.js"></script>
 
         @scripts
 
