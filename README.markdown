@@ -36,6 +36,16 @@ GET [http://localhost:9000/latlng/POSTCODE](http://localhost:9000/latlng/BS106TF
 {"latitude":51.505615,"longitude":-2.6120315}
 ```
 
+Screenshots
+-----------
+
+![Welcome Page](https://github.com/analytically/camelcode/raw/master/screenshot.png)
+
+-----------
+
+![Map](https://github.com/analytically/camelcode/raw/master/screenshot2.png)
+
+
 Technology
 ----------
 
@@ -60,12 +70,3 @@ Royal Mail data &copy; Royal Mail copyright and database right 2012. Code-Point 
 data &copy; Crown copyright and database right 2013.
 
 OS data may be used under the terms of the [OS OpenData licence](http://www.ordnancesurvey.co.uk/oswebsite/docs/licences/os-opendata-licence.pdf).
-
-Screenshots
------------
-
-![Welcome Page](https://github.com/analytically/camelcode/raw/master/screenshot.png)
-
------------
-
-![Map](https://github.com/analytically/camelcode/raw/master/screenshot2.png)
