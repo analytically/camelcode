@@ -9,10 +9,10 @@ import com.google.common.base.Objects;
  */
 @Embedded
 public class CartesianLocation {
-    @Property("ea")
+    @Property("e")
     public int eastings;
 
-    @Property("no")
+    @Property("n")
     public int northings;
 
     public CartesianLocation() {

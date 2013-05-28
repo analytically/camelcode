@@ -9,6 +9,7 @@ import com.mongodb.DBObject;
 import com.mongodb.Mongo;
 import com.mongodb.MongoURI;
 import models.Model;
+import models.PostcodeUnit;
 import play.Application;
 import play.Logger;
 
@@ -33,7 +34,9 @@ public class MorphiaModule extends AbstractModule {
                 return application.classloader();
             }
         };
-        morphia.mapPackage("models");
+
+        morphia.map(PostcodeUnit.class);
+
         return morphia;
     }
 
