@@ -6,16 +6,19 @@ A tech demo built using [Play! 2.1](http://www.playframework.org) (java) that im
 and offers a Geocoding RESTful API and a map. It also demonstrates how
 [Google Guice](http://code.google.com/p/google-guice/) can be integrated in a Play 2.1 Java application.
 
-Prerequisites: [MongoDB](http://www.mongodb.org) and [Play! 2.1](http://www.playframework.org).
-
 Development sponsored by [Coen Recruitment](http://www.coen.co.uk). Follow [@analytically](http://twitter.com/analytically) on Twitter for updates.
 
-Setup
------
+### Requirements
+
+- JDK 6 or later
+- [Play! 2.1](http://www.playframework.org)
+- [MongoDB](http://www.mongodb.org)
+
+### Setup
 
 Edit `conf/application.conf` and point it to a MongoDB installation, and execute
 
-```
+```shell
 play run
 ```
 
@@ -27,8 +30,7 @@ After each file is imported, it will be moved to the `codepointopen/done` direct
 Then visit [http://localhost:9000](http://localhost:9000) and you should see the welcome screen.
 Visit [http://localhost:9000/servermetrics](http://localhost:9000/servermetrics) for server metrics.
 
-JSON
-----
+### REST API and JSON
 
 GET [http://localhost:9000/latlng/POSTCODE](http://localhost:9000/latlng/BS106TF) to geocode a UK postcode. Response will be JSON:
 
@@ -36,8 +38,7 @@ GET [http://localhost:9000/latlng/POSTCODE](http://localhost:9000/latlng/BS106TF
 {"latitude":51.505615,"longitude":-2.6120315}
 ```
 
-Screenshots
------------
+### Screenshots
 
 ![Welcome Page](https://github.com/analytically/camelcode/raw/master/screenshot.png)
 
@@ -46,8 +47,7 @@ Screenshots
 ![Map](https://github.com/analytically/camelcode/raw/master/screenshot2.png)
 
 
-Technology
-----------
+### Technology
 
 * [Play! 2.1](http://www.playframework.org), as web framework
 * [Apache Camel](http://camel.apache.org) to [process and monitor](https://github.com/analytically/camelcode/blob/master/app/Global.java#L103) the `codepointopen` directory and to tell the actors about the postcodes (split(body()))
@@ -60,8 +60,7 @@ Technology
 * [Leaflet](http://leaflet.cloudmade.com) for the map
 * [Twitter Bootstrap](http://twitter.github.com/bootstrap/) and [Font Awesome](http://fortawesome.github.com/Font-Awesome/) for the UI
 
-License
--------
+### License
 
 Licensed under the [WTFPL](http://en.wikipedia.org/wiki/WTFPL).
 
