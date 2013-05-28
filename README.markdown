@@ -1,4 +1,4 @@
-CamelCode
+CamelCode [![Build Status](https://travis-ci.org/analytically/camelcode.png)](https://travis-ci.org/analytically/camelcode)
 =========
 
 A tech demo built using [Play! 2.1](http://www.playframework.org/) that imports the
