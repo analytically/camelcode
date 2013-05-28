@@ -1,12 +1,12 @@
 CamelCode
 =========
 
-A tech demo built using [Play framework 2.1](http://www.playframework.org/) that imports the
+A tech demo built using [Play! 2.1](http://www.playframework.org/) that imports the
 [CodePoint Open](https://www.ordnancesurvey.co.uk/opendatadownload/products.html) UK postcode dataset
 and offers a Geocoding RESTful API and a map. It also demonstrates how
 [Google Guice](http://code.google.com/p/google-guice/) can be integrated in a Play 2.1 Java application.
 
-Prerequisites: [MongoDB](http://www.mongodb.org/) and [Play framework 2.1](http://www.playframework.org/).
+Prerequisites: [MongoDB](http://www.mongodb.org/) and [Play! 2.1](http://www.playframework.org/).
 
 Development sponsored by [Coen Recruitment](http://www.coen.co.uk). Follow [@analytically](http://twitter.com/analytically) on Twitter for updates.
 
@@ -49,7 +49,7 @@ Screenshots
 Technology
 ----------
 
-* [Play framework 2.1](http://www.playframework.org/), thank god for this!
+* [Play! 2.1](http://www.playframework.org/), thank god for this!
 * [Apache Camel](http://camel.apache.org/) to [process and monitor](https://github.com/analytically/camelcode/blob/master/app/Global.java#L103) the `codepointopen` directory and to tell the actors about the postcodes (split(body()))
 * [Akka 2.1](http://akka.io/) provides a nice concurrent model [to process the 1.7 million postcodes](https://github.com/analytically/camelcode/blob/master/app/actors/ProcessCPOCsvEntry.java) in under one minute on modern hardware
 * [GeoTools 8](http://www.geotools.org/) [converts](https://github.com/analytically/camelcode/blob/master/app/actors/ProcessCPOCsvEntry.java) the eastings/northings to latitude/longitude
