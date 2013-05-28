@@ -118,7 +118,7 @@ public class Application extends Controller {
     }
 
     public static Result near(String latitude, String longitude) {
-        return ok(toJson(findNearMiles(Double.parseDouble(latitude), Double.parseDouble(longitude), 15, 1000)));
+        return ok(toJson(findNearMiles(Double.parseDouble(latitude), Double.parseDouble(longitude), 15, 100)));
     }
 
     public static Result calc() {

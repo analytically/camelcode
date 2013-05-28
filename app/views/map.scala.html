@@ -2,34 +2,16 @@
 
 <div id="map"></div>
 <script type="text/javascript">
-    var subDomains = ['otile1', 'otile2', 'otile3', 'otile4'],
-            aerialSubDomains = ['oatile1', 'oatile2', 'oatile3', 'oatile4'],
-            options = {maxZoom:18, subdomains:subDomains},
-            aerialOptions = {maxZoom:11, subdomains:aerialSubDomains},
-            url = 'http://{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png',
-            aerialUrl = 'http://{s}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.png';
-
-    var normal = new L.TileLayer(url, options);
-    var aerial = new L.TileLayer(aerialUrl, aerialOptions);
-
-    var highlightLayer = new L.LayerGroup();
-
     $('#map').css('height', $(window).height());
 
-    var map = new L.Map('map', {
-        attributionControl:false,
-        center:new L.LatLng(52.5, -2),
-        zoom:7,
-        layers:[normal]
-    });
+    var map = new L.Map('map').setView([53, -2], 7);
 
-    var baseMaps = {
-        "Map":normal,
-        "Satellite":aerial
-    };
+    // add an OpenStreetMap tile layer
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
 
-    var overlayMaps = {
-    };
+    map.doubleClickZoom.disable();
 
     var postcodeIcon = L.Icon.extend({
         options:{
@@ -42,29 +24,25 @@
         }
     });
 
-    map.doubleClickZoom.disable();
-    map.on('click', onClick);
-    function onClick(e) {
-        // fetch all postcodes surrounding the click and display them on a layer
-        var postcodesLayer = new L.LayerGroup();
+    var seenLatLong = [];
 
+    function mapOnClick(e) {
         $.getJSON('/near/' + e.latlng.lat + '/' + e.latlng.lng, function (data) {
             $.each(data, function (i, pcu) {
+                if ($.inArray(pcu.postcode, seenLatLong) == -1) {
+                    // for every party, create a marker in it's location and add it to the map
+                    var marker = new L.Marker([pcu.location.latitude, pcu.location.longitude], {icon:new postcodeIcon}).addTo(map);
+                    marker.bindPopup(pcu.postcode);
 
-                // for every party, create a marker in it's location and add it to the map
-                var latLng = new L.LatLng(pcu.location.latitude, pcu.location.longitude);
-                var marker = new L.Marker(latLng, {icon:new postcodeIcon});
-                marker.bindPopup(pcu.postcode);
+                    seenLatLong.push(pcu.postcode)
+                }
 
-                postcodesLayer.addLayer(marker);
             });
         });
-
-        map.addLayer(postcodesLayer);
     }
+    map.on('click', mapOnClick);
 
-    map.on('dblclick', onDblClick);
-    function onDblClick(e) {
+    function mapOnDblClick(e) {
         if (e.originalEvent.ctrlKey || e.originalEvent.metaKey) {
             var oneMileCircle = new L.Circle(e.latlng, 1609, {stroke:false, color:'#46a546', opacity:0.1});
             var fiveMileCircle = new L.Circle(e.latlng, 8046, {stroke:false, color:'#46a546', opacity:0.1});
@@ -83,20 +61,18 @@
             tenMileCircle.on('click', removeCircles);
             fifteenMileCircle.on('click', removeCircles);
 
-            map.addLayer(oneMileCircle);
-            map.addLayer(fiveMileCircle);
-            map.addLayer(tenMileCircle);
-            map.addLayer(fifteenMileCircle);
+            oneMileCircle.addTo(map);
+            fiveMileCircle.addTo(map);
+            tenMileCircle.addTo(map);
+            fifteenMileCircle.addTo(map);
         }
         else {
             map.setView(e.latlng, map.getZoom() + 1);
         }
     }
+    map.on('dblclick', mapOnDblClick);
 
-    var layersControl = new L.Control.Layers(baseMaps, overlayMaps);
-    map.addControl(layersControl);
-
-    map.addControl(new L.Control.Scale({maxWidth:800, metric:false}));
-    map.addControl(new L.Control.Scale({maxWidth:400, metric:false}));
+    new L.Control.Scale({maxWidth:800, metric:false}).addTo(map);
+    new L.Control.Scale({maxWidth:400, metric:false}).addTo(map);
 </script>
 }
