@@ -16,9 +16,9 @@ Development sponsored by [Coen Recruitment](http://www.coen.co.uk). Follow [@ana
 
 ### Setup
 
-Edit `conf/application.conf` and point it to a MongoDB installation, and execute
+Edit `conf/application.conf` and point it to a MongoDB installation (defaults to `localhost`), and execute
 
-```shell
+``` sh
 play run
 ```
 
@@ -34,7 +34,7 @@ Visit [http://localhost:9000/servermetrics](http://localhost:9000/servermetrics)
 
 GET [http://localhost:9000/latlng/POSTCODE](http://localhost:9000/latlng/BS106TF) to geocode a UK postcode. Response will be JSON:
 
-```json
+``` json
 {"latitude":51.505615,"longitude":-2.6120315}
 ```
 
