@@ -41,8 +41,6 @@ object Build extends sbt.Build {
   )
 
   val main = play.Project(appName, appVersion, appDependencies).settings(
-    lessEntryPoints <<= baseDirectory(_ ** "camelcode.less"),
-
     resolvers += "Morphia Repo" at "http://morphia.googlecode.com/svn/mavenrepo/",
     resolvers += "Open Source Geospatial Foundation Repository" at "http://download.osgeo.org/webdav/geotools/",
     resolvers += "OpenGeo Maven Repository" at "http://repo.opengeo.org"
