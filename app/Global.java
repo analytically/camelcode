@@ -68,6 +68,7 @@ public class Global extends GlobalSettings {
         }
     }
 
+    private Injector injector;
     private final List<Module> modules = Lists.newArrayList();
 
     private final List<OnStartListener> onStartListeners = new CopyOnWriteArrayList<OnStartListener>();
@@ -166,9 +167,14 @@ public class Global extends GlobalSettings {
     }
 
     @Override
+    public <A> A getControllerInstance(Class<A> controllerClass) throws Exception {
+        return injector.getInstance(controllerClass);
+    }
+
+    @Override
     public void onStart(Application app) {
         Logger.info("Creating injector with " + modules.size() + " modules.");
-        Injector injector = Guice.createInjector(Stage.PRODUCTION, modules);
+        injector = Guice.createInjector(Stage.PRODUCTION, modules);
 
         for (OnStartListener listener : onStartListeners) {
             listener.onApplicationStart(app, injector);
