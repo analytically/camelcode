@@ -106,7 +106,6 @@ public class Global extends GlobalSettings {
                 Names.bindProperties(this.binder(), fromKeys(application.configuration().keys(), new Function<String, String>() {
                     @Override
                     public String apply(String key) {
-                        // remove after https://play.lighthouseapp.com/projects/82401/tickets/372 is fixed
                         if (key.contains("akka")) return null;
 
                         return application.configuration().getString(key);
