@@ -6,7 +6,7 @@ A tech demo built using [Play! 2.1](http://www.playframework.org) (java) that im
 and offers a Geocoding RESTful API and a map. It also demonstrates how
 [Google Guice](http://code.google.com/p/google-guice/) can be integrated in a Play 2.1 Java application.
 
-Development sponsored by [Coen Recruitment](http://www.coen.co.uk). Follow [@analytically](http://twitter.com/analytically) on Twitter for updates.
+Development sponsored by [Coen Recruitment](http://www.coen.co.uk). Follow [@analytically](http://twitter.com/analytically) for updates.
 
 ### Requirements
 
