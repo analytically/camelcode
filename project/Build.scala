@@ -9,11 +9,11 @@ object Build extends sbt.Build {
   val appDependencies = Seq(
     javaCore,
 
-    "org.apache.camel" % "camel-core" % "2.10.5",
-    "org.apache.camel" % "camel-csv" % "2.10.5",
-    "org.apache.camel" % "camel-bindy" % "2.10.5",
-    "org.apache.camel" % "camel-jackson" % "2.10.5",
-    "org.apache.camel" % "camel-http" % "2.10.5",
+    "org.apache.camel" % "camel-core" % "2.10.6",
+    "org.apache.camel" % "camel-csv" % "2.10.6",
+    "org.apache.camel" % "camel-bindy" % "2.10.6",
+    "org.apache.camel" % "camel-jackson" % "2.10.6",
+    "org.apache.camel" % "camel-http" % "2.10.6",
 
     "org.geotools" % "gt-main" % "9.3",
     "org.geotools" % "gt-epsg-hsql" % "9.3",
