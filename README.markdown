@@ -1,7 +1,7 @@
 CamelCode [![Build Status](https://travis-ci.org/analytically/camelcode.png)](https://travis-ci.org/analytically/camelcode)
 =========
 
-A tech demo built using [Play Framework 2.1](http://www.playframework.org) (java) that imports the
+A tech demo built using [Play Framework 2.2](http://www.playframework.org) (java) that imports the
 [CodePoint Open](https://www.ordnancesurvey.co.uk/opendatadownload/products.html) UK postcode dataset
 and offers a Geocoding RESTful API and a map. It also demonstrates how
 [Google Guice](http://code.google.com/p/google-guice/) can be integrated in a Play Framework Java application.
@@ -11,7 +11,7 @@ Development sponsored by [Coen Recruitment](http://www.coen.co.uk). Follow [@ana
 ### Requirements
 
 - JDK 6 or later
-- [Play Framework 2.1](http://www.playframework.org)
+- [Play Framework 2.2](http://www.playframework.org)
 - [MongoDB](http://www.mongodb.org)
 
 ### Setup
@@ -40,19 +40,16 @@ GET [http://localhost:9000/latlng/POSTCODE](http://localhost:9000/latlng/BS106TF
 
 ### Screenshots
 
-![Welcome Page](https://github.com/analytically/camelcode/raw/master/screenshot.png)
+![Welcome Page](screenshot.png)
 
------------
-
-![Map](https://github.com/analytically/camelcode/raw/master/screenshot2.png)
-
+![Map](screenshot2.png)
 
 ### Technology
 
-* [Play Framework 2.1](http://www.playframework.org), as web framework
+* [Play Framework 2.2](http://www.playframework.org), as web framework
 * [Apache Camel](http://camel.apache.org) to [process and monitor](https://github.com/analytically/camelcode/blob/master/app/Global.java#L103) the `codepointopen` directory and to tell the actors about the postcodes (split(body()))
-* [Akka 2.1](http://akka.io) provides a nice concurrency model [to process the 1.7 million postcodes](https://github.com/analytically/camelcode/blob/master/app/actors/ProcessCPOCsvEntry.java) in under one minute on modern hardware
-* [GeoTools 8](http://www.geotools.org) [converts](https://github.com/analytically/camelcode/blob/master/app/actors/ProcessCPOCsvEntry.java) the eastings/northings to latitude/longitude
+* [Akka](http://akka.io) provides a nice concurrency model [to process the 1.7 million postcodes](https://github.com/analytically/camelcode/blob/master/app/actors/ProcessCPOCsvEntry.java) in under one minute on modern hardware
+* [GeoTools](http://www.geotools.org) [converts](https://github.com/analytically/camelcode/blob/master/app/actors/ProcessCPOCsvEntry.java) the eastings/northings to latitude/longitude
 * [Guice](http://code.google.com/p/google-guice/) for [Dependency Injection](https://github.com/analytically/camelcode/blob/master/app/Global.java#L53) (not too much to inject yet though)
 * [Metrics](https://github.com/codahale/metrics) for metrics
 * [MongoDB](http://www.mongodb.org) as database with two-dimensional geospatial indexes (see [Geospatial Indexing](http://www.mongodb.org/display/DOCS/Geospatial+Indexing))
