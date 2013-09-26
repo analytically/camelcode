@@ -1,8 +1,8 @@
 package modules;
 
-import com.google.code.morphia.Datastore;
-import com.google.code.morphia.Morphia;
-import com.google.code.morphia.mapping.DefaultCreator;
+import org.mongodb.morphia.Datastore;
+import org.mongodb.morphia.Morphia;
+import org.mongodb.morphia.mapping.DefaultCreator;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.mongodb.DBObject;

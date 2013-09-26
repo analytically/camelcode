@@ -9,14 +9,14 @@ object Build extends sbt.Build {
   val appDependencies = Seq(
     javaCore,
 
-    "org.apache.camel" % "camel-core" % "2.10.6",
-    "org.apache.camel" % "camel-csv" % "2.10.6",
-    "org.apache.camel" % "camel-bindy" % "2.10.6",
-    "org.apache.camel" % "camel-jackson" % "2.10.6",
-    "org.apache.camel" % "camel-http" % "2.10.6",
+    "org.apache.camel" % "camel-core" % "2.10.7",
+    "org.apache.camel" % "camel-csv" % "2.10.7",
+    "org.apache.camel" % "camel-bindy" % "2.10.7",
+    "org.apache.camel" % "camel-jackson" % "2.10.7",
+    "org.apache.camel" % "camel-http" % "2.10.7",
 
-    "org.geotools" % "gt-main" % "9.3",
-    "org.geotools" % "gt-epsg-hsql" % "9.3",
+    "org.geotools" % "gt-main" % "9.5",
+    "org.geotools" % "gt-epsg-hsql" % "9.5",
 
     "org.reflections" % "reflections" % "0.9.9-RC1",
 
@@ -30,9 +30,9 @@ object Build extends sbt.Build {
     "com.google.inject.extensions" % "guice-throwingproviders" % "3.0",
 
     // Morphia
-    "org.mongodb" % "mongo-java-driver" % "2.11.2",
-    "com.google.code.morphia" % "morphia" % "0.101.0",
-    "com.google.code.morphia" % "morphia-logging-slf4j" % "0.101.0"
+    "org.mongodb" % "mongo-java-driver" % "2.11.3",
+    "org.mongodb.morphia" % "morphia" % "0.105",
+    "org.mongodb.morphia" % "morphia-logging-slf4j" % "0.105"
   )
 
   val main = play.Project(appName, appVersion, appDependencies).settings(

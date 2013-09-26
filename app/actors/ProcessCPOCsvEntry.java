@@ -74,7 +74,6 @@ public class ProcessCPOCsvEntry extends UntypedActor {
                 throw Throwables.propagate(e);
             }
 
-
             final TimerContext saveCtx = savePostcodeUnit.time();
             try {
                 unit.save();

@@ -1,6 +1,6 @@
 package controllers;
 
-import com.google.code.morphia.Morphia;
+import org.mongodb.morphia.Morphia;
 import com.google.common.base.CharMatcher;
 import com.google.common.base.Function;
 import com.google.common.base.Strings;

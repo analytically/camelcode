@@ -44,7 +44,7 @@ public class CPOCsvCamelWatchService extends AbstractService {
                                     Map<String, CodePointOpenCsvEntry> csvEntryMap = (Map<String, CodePointOpenCsvEntry>) body;
 
                                     for (CodePointOpenCsvEntry entry : csvEntryMap.values()) {
-                                        actorRef.tell(entry);
+                                        actorRef.tell(entry, ActorRef.noSender());
                                     }
                                 } else {
                                     throw new RuntimeException("something went wrong; message body is no map!");

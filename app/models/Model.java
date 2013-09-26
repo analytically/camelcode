@@ -1,9 +1,11 @@
 package models;
 
-import com.google.code.morphia.Datastore;
-import com.google.code.morphia.Key;
-import com.google.code.morphia.annotations.Id;
-import com.google.code.morphia.query.*;
+import com.mongodb.DBCollection;
+import com.mongodb.DBObject;
+import org.mongodb.morphia.Datastore;
+import org.mongodb.morphia.Key;
+import org.mongodb.morphia.annotations.Id;
+import org.mongodb.morphia.query.*;
 import com.google.inject.Inject;
 import com.mongodb.ReadPreference;
 import com.mongodb.WriteResult;
@@ -214,6 +216,41 @@ public abstract class Model {
         @Override
         public Class<T> getEntityClass() {
             return type;
+        }
+
+        @Override
+        public int getOffset() {
+            return query().getOffset();
+        }
+
+        @Override
+        public int getLimit() {
+            return query().getLimit();
+        }
+
+        @Override
+        public int getBatchSize() {
+            return query().getBatchSize();
+        }
+
+        @Override
+        public DBObject getQueryObject() {
+            return query().getQueryObject();
+        }
+
+        @Override
+        public DBObject getSortObject() {
+            return query().getSortObject();
+        }
+
+        @Override
+        public DBObject getFieldsObject() {
+            return query().getFieldsObject();
+        }
+
+        @Override
+        public DBCollection getCollection() {
+            return query().getCollection();
         }
 
         @Override
