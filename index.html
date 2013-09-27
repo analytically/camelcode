@@ -1,57 +1,75 @@
 <!DOCTYPE html>
 <html>
-
   <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Camelcode : A tech demo built using Play! 2.1 that imports the CodePoint Open UK postcode dataset and offers a Geocoding REST API and a postcode map." />
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=640" />
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+    <link rel="stylesheet" href="stylesheets/core.css" media="screen"/>
+    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)"/>
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
 
-    <title>Camelcode</title>
+    <script type="text/javascript" src="javascripts/modernizr.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#main_content').headsmart()
+      })
+    </script>
+    <title>Camelcode by analytically</title>
   </head>
 
   <body>
+    <a id="forkme_banner" href="https://github.com/analytically/camelcode">View on GitHub</a>
+    <div class="shell">
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/analytically/camelcode">View on GitHub</a>
+      <header>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <h1>Camelcode</h1>
+            <h2>A tech demo built using Play Framework that imports the CodePoint Open UK postcode dataset and offers a Geocoding REST API and a postcode map.</h2>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+      </header>
 
-          <h1 id="project_title">Camelcode</h1>
-          <h2 id="project_tagline">A tech demo built using Play! 2.1 that imports the CodePoint Open UK postcode dataset and offers a Geocoding REST API and a postcode map.</h2>
+      <section id="downloads">
+        <span class="inner">
+          <a href="https://github.com/analytically/camelcode/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/analytically/camelcode/tarball/master" class="tgz"><em>download</em> .TGZ</a>
+        </span>
+      </section>
 
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/analytically/camelcode/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/analytically/camelcode/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
 
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h1>CamelCode</h1>
+      <span class="banner-fix"></span>
 
-<p>A tech demo built using <a href="http://www.playframework.org">Play! 2.1</a> (java) that imports the
+
+      <section id="main_content">
+        <h1>
+<a name="camelcode" class="anchor" href="#camelcode"><span class="octicon octicon-link"></span></a>CamelCode</h1>
+
+<p>A tech demo built using <a href="http://www.playframework.org">Play Framework 2.2</a> (java) that imports the
 <a href="https://www.ordnancesurvey.co.uk/opendatadownload/products.html">CodePoint Open</a> UK postcode dataset
 and offers a Geocoding RESTful API and a map. It also demonstrates how
-<a href="http://code.google.com/p/google-guice/">Google Guice</a> can be integrated in a Play 2.1 Java application.</p>
+<a href="http://code.google.com/p/google-guice/">Google Guice</a> can be integrated in a Play Framework Java application.</p>
 
-<p>Development sponsored by <a href="http://www.coen.co.uk">Coen Recruitment</a>. Follow <a href="http://twitter.com/analytically">@analytically</a> on Twitter for updates.</p>
+<p>Development sponsored by <a href="http://www.coen.co.uk">Coen Recruitment</a>. Follow <a href="http://twitter.com/analytically">@analytically</a> for updates.</p>
 
-<h3>Requirements</h3>
+<h3>
+<a name="requirements" class="anchor" href="#requirements"><span class="octicon octicon-link"></span></a>Requirements</h3>
 
 <ul>
 <li>JDK 6 or later</li>
-<li><a href="http://www.playframework.org">Play! 2.1</a></li>
+<li><a href="http://www.playframework.org">Play Framework 2.2</a></li>
 <li><a href="http://www.mongodb.org">MongoDB</a></li>
-</ul><h3>Setup</h3>
+</ul><h3>
+<a name="setup" class="anchor" href="#setup"><span class="octicon octicon-link"></span></a>Setup</h3>
 
-<p>Edit <code>conf/application.conf</code> and point it to a MongoDB installation, and execute</p>
+<p>Edit <code>conf/application.conf</code> and point it to a MongoDB installation (defaults to <code>localhost</code>), and execute</p>
 
-<pre lang="shell"><code>play run
-</code></pre>
+<div class="highlight highlight-sh"><pre>play run
+</pre></div>
 
 <p>Then drop the <a href="https://www.ordnancesurvey.co.uk/opendatadownload/products.html">CodePoint Open CSV</a> (scroll halfway down, 20mb)
 files in the <code>codepointopen</code> directory.</p>
@@ -59,45 +77,49 @@ files in the <code>codepointopen</code> directory.</p>
 <p>After each file is imported, it will be moved to the <code>codepointopen/done</code> directory.</p>
 
 <p>Then visit <a href="http://localhost:9000">http://localhost:9000</a> and you should see the welcome screen.
-Visit <a href="http://localhost:9000/servermetrics">http://localhost:9000/servermetrics</a> for server metrics.</p>
+Check out the <a href="http://localhost:9000/servermetrics">server metrics</a> or the <a href="http://localhost:9000/map">map</a>.</p>
 
-<h3>REST API and JSON</h3>
+<h3>
+<a name="rest-api-and-json" class="anchor" href="#rest-api-and-json"><span class="octicon octicon-link"></span></a>REST API and JSON</h3>
 
 <p>GET <a href="http://localhost:9000/latlng/BS106TF">http://localhost:9000/latlng/POSTCODE</a> to geocode a UK postcode. Response will be JSON:</p>
 
-<div class="highlight"><pre><span class="p">{</span><span class="nt">"latitude"</span><span class="p">:</span><span class="mf">51.505615</span><span class="p">,</span><span class="nt">"longitude"</span><span class="p">:</span><span class="mf">-2.6120315</span><span class="p">}</span>
+<div class="highlight highlight-json"><pre><span class="p">{</span><span class="nt">"latitude"</span><span class="p">:</span><span class="mf">51.505615</span><span class="p">,</span><span class="nt">"longitude"</span><span class="p">:</span><span class="mf">-2.6120315</span><span class="p">}</span>
 </pre></div>
 
-<h3>Screenshots</h3>
+<h3>
+<a name="screenshots" class="anchor" href="#screenshots"><span class="octicon octicon-link"></span></a>Screenshots</h3>
 
-<p><img src="https://github.com/analytically/camelcode/raw/master/screenshot.png" alt="Welcome Page"></p>
+<p><img src="screenshot.png" alt="Welcome Page"></p>
 
-<hr><p><img src="https://github.com/analytically/camelcode/raw/master/screenshot2.png" alt="Map"></p>
+<p><img src="screenshot2.png" alt="Map"></p>
 
-<h3>Technology</h3>
+<h3>
+<a name="technology" class="anchor" href="#technology"><span class="octicon octicon-link"></span></a>Technology</h3>
 
 <ul>
 <li>
-<a href="http://www.playframework.org">Play! 2.1</a>, as web framework</li>
+<a href="http://www.playframework.org">Play Framework 2.2</a>, as web framework</li>
 <li>
 <a href="http://camel.apache.org">Apache Camel</a> to <a href="https://github.com/analytically/camelcode/blob/master/app/Global.java#L103">process and monitor</a> the <code>codepointopen</code> directory and to tell the actors about the postcodes (split(body()))</li>
 <li>
-<a href="http://akka.io">Akka 2.1</a> provides a nice concurrency model <a href="https://github.com/analytically/camelcode/blob/master/app/actors/ProcessCPOCsvEntry.java">to process the 1.7 million postcodes</a> in under one minute on modern hardware</li>
+<a href="http://akka.io">Akka</a> provides a nice concurrency model <a href="https://github.com/analytically/camelcode/blob/master/app/actors/ProcessCPOCsvEntry.java">to process the 1.7 million postcodes</a> in under one minute on modern hardware</li>
 <li>
-<a href="http://www.geotools.org">GeoTools 8</a> <a href="https://github.com/analytically/camelcode/blob/master/app/actors/ProcessCPOCsvEntry.java">converts</a> the eastings/northings to latitude/longitude</li>
+<a href="http://www.geotools.org">GeoTools</a> <a href="https://github.com/analytically/camelcode/blob/master/app/actors/ProcessCPOCsvEntry.java">converts</a> the eastings/northings to latitude/longitude</li>
 <li>
 <a href="http://code.google.com/p/google-guice/">Guice</a> for <a href="https://github.com/analytically/camelcode/blob/master/app/Global.java#L53">Dependency Injection</a> (not too much to inject yet though)</li>
 <li>
-<a href="https://github.com/codahale/metrics">Metrics</a> for metrics</li>
+<a href="http://metrics.codahale.com/">Metrics</a> for metrics</li>
 <li>
 <a href="http://www.mongodb.org">MongoDB</a> as database with two-dimensional geospatial indexes (see <a href="http://www.mongodb.org/display/DOCS/Geospatial+Indexing">Geospatial Indexing</a>)</li>
 <li>
-<a href="http://code.google.com/p/morphia/">Morphia</a> for 'Object-Document Mapping'</li>
+<a href="https://github.com/mongodb/morphia">Morphia</a> for 'Object-Document Mapping'</li>
 <li>
-<a href="http://leaflet.cloudmade.com">Leaflet</a> for the map</li>
+<a href="http://leafletjs.com/">Leaflet</a> for the map</li>
 <li>
 <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a> and <a href="http://fortawesome.github.com/Font-Awesome/">Font Awesome</a> for the UI</li>
-</ul><h3>License</h3>
+</ul><h3>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h3>
 
 <p>Licensed under the <a href="http://en.wikipedia.org/wiki/WTFPL">WTFPL</a>.</p>
 
@@ -107,17 +129,21 @@ data © Crown copyright and database right 2013.</p>
 
 <p>OS data may be used under the terms of the <a href="http://www.ordnancesurvey.co.uk/oswebsite/docs/licences/os-opendata-licence.pdf">OS OpenData licence</a>.</p>
       </section>
-    </div>
 
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Camelcode maintained by <a href="https://github.com/analytically">analytically</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      <footer>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <p>this project by <a href="https://github.com/analytically">analytically</a> can be found on <a href="https://github.com/analytically/camelcode">GitHub</a></p>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+        <p>Generated with <a href="http://pages.github.com">GitHub Pages</a> using Merlot</p>
+        <span class="octocat"></span>
       </footer>
+
     </div>
 
     
-
   </body>
 </html>
