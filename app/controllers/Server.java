@@ -1,13 +1,13 @@
 package controllers;
 
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Strings;
 import com.yammer.metrics.HealthChecks;
 import com.yammer.metrics.Metrics;
 import com.yammer.metrics.core.*;
 import com.yammer.metrics.stats.Snapshot;
-import org.codehaus.jackson.JsonFactory;
-import org.codehaus.jackson.JsonGenerator;
-import org.codehaus.jackson.map.ObjectMapper;
 import play.Logger;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -31,7 +31,7 @@ public class Server extends Controller {
 
         StringWriter writer = new StringWriter();
         JsonFactory factory = new JsonFactory(new ObjectMapper());
-        final JsonGenerator json = factory.createJsonGenerator(writer);
+        final JsonGenerator json = factory.createGenerator(writer);
         if (pretty) {
             json.useDefaultPrettyPrinter();
         }
