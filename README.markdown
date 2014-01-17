@@ -55,7 +55,7 @@ GET [http://localhost:9000/latlng/POSTCODE](http://localhost:9000/latlng/BS106TF
 * [MongoDB](http://www.mongodb.org) as database with two-dimensional geospatial indexes (see [Geospatial Indexing](http://www.mongodb.org/display/DOCS/Geospatial+Indexing))
 * [Morphia](https://github.com/mongodb/morphia) for 'Object-Document Mapping'
 * [Leaflet](http://leafletjs.com/) for the map
-* [Twitter Bootstrap](http://twitter.github.com/bootstrap/) and [Font Awesome](http://fortawesome.github.com/Font-Awesome/) for the UI
+* [Bootstrap](http://getbootstrap.com/) and [Font Awesome](http://fortawesome.github.com/Font-Awesome/) for the UI
 
 ### License
 
