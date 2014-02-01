@@ -35,9 +35,9 @@ object Build extends sbt.Build {
     "com.google.inject.extensions" % "guice-throwingproviders" % "3.0",
 
     // Morphia
-    "org.mongodb" % "mongo-java-driver" % "2.11.3",
-    "org.mongodb.morphia" % "morphia" % "0.105",
-    "org.mongodb.morphia" % "morphia-logging-slf4j" % "0.105"
+    "org.mongodb" % "mongo-java-driver" % "2.11.4",
+    "org.mongodb.morphia" % "morphia" % "0.106",
+    "org.mongodb.morphia" % "morphia-logging-slf4j" % "0.106"
   )
 
   val main = play.Project(appName, appVersion, appDependencies).settings(

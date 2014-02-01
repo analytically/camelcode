@@ -143,6 +143,11 @@ public abstract class Model {
         }
 
         @Override
+        public Query<T> maxScan(int value) {
+            return query().maxScan(value);
+        }
+
+        @Override
         public Query<T> offset(int value) {
             return query().offset(value);
         }
@@ -254,11 +259,6 @@ public abstract class Model {
         }
 
         @Override
-        public Query<T> clone() {
-            return query().clone();
-        }
-
-        @Override
         public T get() {
             return query().get();
         }
@@ -311,6 +311,11 @@ public abstract class Model {
         @Override
         public Iterator<T> iterator() {
             return query().iterator();
+        }
+
+        @Override
+        public Query<T> cloneQuery() {
+            return query().cloneQuery();
         }
     }
 }
