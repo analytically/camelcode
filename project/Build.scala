@@ -34,8 +34,8 @@ object Build extends sbt.Build {
 
     // Morphia
     "org.mongodb" % "mongo-java-driver" % "2.11.4",
-    "org.mongodb.morphia" % "morphia" % "0.106",
-    "org.mongodb.morphia" % "morphia-logging-slf4j" % "0.106"
+    "org.mongodb.morphia" % "morphia" % "0.107",
+    "org.mongodb.morphia" % "morphia-logging-slf4j" % "0.107"
   )
 
   val main = play.Project(appName, appVersion, appDependencies).settings(

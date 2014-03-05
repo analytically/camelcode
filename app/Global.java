@@ -4,7 +4,6 @@ import akka.actor.Props;
 import akka.actor.UntypedActor;
 import akka.actor.UntypedActorFactory;
 import org.mongodb.morphia.logging.MorphiaLoggerFactory;
-import org.mongodb.morphia.logging.slf4j.SLF4JLogrImplFactory;
 import com.google.common.base.Function;
 import com.google.common.base.Throwables;
 import com.google.common.collect.ImmutableMap;
@@ -19,7 +18,7 @@ import com.google.inject.name.Names;
 import com.google.inject.spi.InjectionListener;
 import com.google.inject.spi.TypeEncounter;
 import com.google.inject.spi.TypeListener;
-import com.yammer.metrics.reporting.ConsoleReporter;
+import org.mongodb.morphia.logging.slf4j.SLF4JLoggerImplFactory;
 import org.reflections.Reflections;
 import org.reflections.scanners.SubTypesScanner;
 import org.reflections.util.ClasspathHelper;
@@ -28,16 +27,13 @@ import org.reflections.util.FilterBuilder;
 import play.Application;
 import play.GlobalSettings;
 import play.Logger;
-import play.Play;
 import play.libs.Akka;
 import play.mvc.Controller;
 import utils.MoreMatchers;
 
-import java.lang.reflect.Modifier;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author Mathias Bogaert
@@ -45,7 +41,7 @@ import java.util.concurrent.TimeUnit;
 public class Global extends GlobalSettings {
     static {
         MorphiaLoggerFactory.reset();
-        MorphiaLoggerFactory.registerLogger(SLF4JLogrImplFactory.class);
+        MorphiaLoggerFactory.registerLogger(SLF4JLoggerImplFactory.class);
     }
 
     static final class ActorProvider<T extends UntypedActor> implements Provider<ActorRef> {

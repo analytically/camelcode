@@ -153,6 +153,16 @@ public abstract class Model {
         }
 
         @Override
+        public Query<T> upperIndexBound(DBObject upperBound) {
+            return query().upperIndexBound(upperBound);
+        }
+
+        @Override
+        public Query<T> lowerIndexBound(DBObject lowerBound) {
+            return query().lowerIndexBound(lowerBound);
+        }
+
+        @Override
         @Deprecated
         public Query<T> skip(int value) {
             return query().skip(value);
