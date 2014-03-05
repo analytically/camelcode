@@ -9,9 +9,9 @@ object Build extends sbt.Build {
   val appDependencies = Seq(
     javaCore,
 
-    "org.apache.camel" % "camel-core" % "2.11.3",
-    "org.apache.camel" % "camel-csv" % "2.11.3",
-    "org.apache.camel" % "camel-bindy" % "2.11.3",
+    "org.apache.camel" % "camel-core" % "2.11.4",
+    "org.apache.camel" % "camel-csv" % "2.11.4",
+    "org.apache.camel" % "camel-bindy" % "2.11.4",
 
     "org.geotools" % "gt-main" % "10.4" excludeAll
       ExclusionRule(organization = "javax.media")
