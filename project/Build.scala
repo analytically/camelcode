@@ -13,11 +13,11 @@ object Build extends sbt.Build {
     "org.apache.camel" % "camel-csv" % "2.11.4",
     "org.apache.camel" % "camel-bindy" % "2.11.4",
 
-    "org.geotools" % "gt-main" % "10.4" excludeAll
+    "org.geotools" % "gt-main" % "10.5" excludeAll
       ExclusionRule(organization = "javax.media")
     ,
 
-    "org.geotools" % "gt-epsg-hsql" % "10.4" excludeAll
+    "org.geotools" % "gt-epsg-hsql" % "10.5" excludeAll
       ExclusionRule(organization = "javax.media")
     ,
 
